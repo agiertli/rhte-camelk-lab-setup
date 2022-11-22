@@ -1,0 +1,10 @@
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/agiertli/rhte-camelk
+    targetRevision: HEAD
+argo:
+  destination: tooling
+  namespace: argocd
+  project: rhte-camelk-tooling       

@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: camelk
+  namespace: {{ .Values.argo.namespace }}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: {{ .Values.argo.destination }}
+    server: {{ .Values.spec.destination.server }}
+  project: {{ .Values.argo.project }}
+  source:
+    path: camelk
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}

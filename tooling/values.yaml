@@ -5,6 +5,5 @@ spec:
     repoURL: https://github.com/agiertli/rhte-camelk
     targetRevision: HEAD
 argo:
-  destination: tooling
-  namespace: argocd
+  namespace: tooling
   project: rhte-camelk-tooling       

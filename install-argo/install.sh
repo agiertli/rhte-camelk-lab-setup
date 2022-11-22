@@ -1,6 +1,6 @@
-ARGOCD_NAMESPACE=argocd
+ARGOCD_NAMESPACE=openshift-gitops
 ARGOCD_TOOLING_NAMESPACE=tooling
-ARGOCD_CR_NAME=argocd-master
+ARGOCD_CR_NAME=openshift-gitops
 ARGOCD_GIT_URL=https://github.com/agiertli/rhte-camelk.git
 ARGOCD_GIT_NAME="rhte-camelk-tooling"
 ARGOCD_PROJECT_NAME="rhte-camelk-tooling"
@@ -22,21 +22,21 @@ while getopts "p:" opt; do
   esac
 done
 
-echo "Creating namespace : argocd"
-oc apply -f namespace.yaml
-oc project ${ARGOCD_NAMESPACE}
-echo "Creating OperatorGroup: argocd-operator"
-oc apply -f operator-group.yaml
+# echo "Creating namespace : argocd"
+# oc apply -f namespace.yaml
+# oc project ${ARGOCD_NAMESPACE}
+# echo "Creating OperatorGroup: argocd-operator"
+# oc apply -f operator-group.yaml
 echo "Creating Subscription: argocd"
 oc apply -f argocd-subs.yaml
-echo "Creating ArgoCD CR : ${ARGOCD_CR_NAME}"
-while [[ argoCdOutput=$(oc apply -f argocd-cr.yaml 2>&1 > /dev/null) == *"error"* ]]
-do
- echo "Waiting until ArgoCD operator is ready..."
- sleep 5
-done
+# echo "Creating ArgoCD CR : ${ARGOCD_CR_NAME}"
+# while [[ argoCdOutput=$(oc apply -f argocd-cr.yaml 2>&1 > /dev/null) == *"error"* ]]
+# do
+#  echo "Waiting until ArgoCD operator is ready..."
+#  sleep 5
+# done
 
-while [[ argoSecret=$(oc get secret ${ARGOCD_CR_NAME}-cluster 2>&1 > /dev/null) == *"Error"* ]]
+while [[ argoSecret=$(oc -n ${ARGOCD_NAMESPACE} get secret ${ARGOCD_CR_NAME}-cluster 2>&1 > /dev/null) == *"Error"* ]]
 do
 echo "Waiting until ArgoCD CR is ready..."
 sleep 5
@@ -82,7 +82,6 @@ argocd app create ${ARGOCD_APP_NAME} \
 
 
 argocd app set ${ARGOCD_APP_NAME} --sync-policy automated --self-heal
-argocd app set ${ARGOCD_APP_NAME} --sync-option CreateNamespace=true
-
+#argocd app set ${ARGOCD_APP_NAME} --sync-option CreateNamespace=true
 
 echo "Installation complete!" 

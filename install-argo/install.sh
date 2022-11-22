@@ -22,11 +22,11 @@ while getopts "p:" opt; do
   esac
 done
 
-echo "Creating namespace : argocd"
-oc apply -f namespace.yaml
-oc project argocd
-echo "Creating OperatorGroup: argocd-operator"
-oc apply -f operator-group.yaml
+# echo "Creating namespace : argocd"
+# oc apply -f namespace.yaml
+# oc project openshift-o
+# echo "Creating OperatorGroup: argocd-operator"
+# oc apply -f operator-group.yaml
 echo "Creating Subscription: argocd"
 oc apply -f argocd-subs.yaml
 echo "Creating ArgoCD CR : ${ARGOCD_CR_NAME}"
@@ -76,13 +76,12 @@ argocd app create ${ARGOCD_APP_NAME} \
   --repo ${ARGOCD_GIT_URL} \
   --path tooling \
   --revision HEAD \
-  --dest-namespace ${ARGOCD_NAMESPACE} \
+  --dest-namespace ${ARGOCD_TOOLING_NAMESPACE} \
   --dest-server https://kubernetes.default.svc
 
 
 argocd app set ${ARGOCD_APP_NAME} --sync-policy automated --self-heal
 argocd app set ${ARGOCD_APP_NAME} --sync-option CreateNamespace=true
-
 
 
 echo "Installation complete!" 

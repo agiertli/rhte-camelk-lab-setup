@@ -56,11 +56,12 @@ argocd repo add ${ARGOCD_GIT_URL} --name ${ARGOCD_GIT_NAME}
 
 
 # echo "Setting ArgoCD permissions"
-# oc policy add-role-to-user \
-#    edit \
-#    system:serviceaccount:admin-argocd:argocd-argocd-application-controller \
-#    --rolebinding-name=argocd-edit \
-#    -n ${ARGOCD_TOOLING_NAMESPACE}
+oc new-project tooling
+oc policy add-role-to-user \
+   edit \
+   system:serviceaccount:admin-argocd:argocd-argocd-application-controller \
+   --rolebinding-name=argocd-edit \
+   -n ${ARGOCD_TOOLING_NAMESPACE}
 
 echo "Creating ArgoCD Project ${ARGOCD_PROJECT_NAME}"
 

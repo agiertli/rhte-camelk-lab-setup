@@ -1,7 +1,8 @@
-ARGOCD_NAMEPSACE=argocd
-oc project openshift-operators
-oc delete argocd argocd-master
-oc delete csv openshift-gitops-operator.v1.6.2
-oc delete subs openshift-gitops-operator
-# oc delete project ${ARGOCD_NAMEPSACE}
-# oc delete project tooling
+ARGOCD_CR_NAMESPACE=openshift-gitops
+ARGOCD_OPERATOR_NAMESPACE=openshift-operators
+ARGOCD_TOOLING_NAMESPACE=tooling
+oc delete argocd openshift-gitops -n ${ARGOCD_CR_NAMESPACE}
+oc delete csv openshift-gitops-operator.v1.6.2 -n ${ARGOCD_OPERATOR_NAMESPACE}
+oc delete subs openshift-gitops-operator -n ${ARGOCD_OPERATOR_NAMESPACE}
+oc delete project ${ARGOCD_CR_NAMESPACE}
+oc delete project ${ARGOCD_TOOLING_NAMESPACE}

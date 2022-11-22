@@ -59,14 +59,14 @@ argocd repo add ${ARGOCD_GIT_URL} --name ${ARGOCD_GIT_NAME}
 oc new-project tooling
 oc policy add-role-to-user \
    edit \
-   system:serviceaccount:admin-argocd:argocd-argocd-application-controller \
+   system:serviceaccount:openshift-gitops:openshift-gitops-argocd-application-controller \
    --rolebinding-name=argocd-edit \
    -n ${ARGOCD_TOOLING_NAMESPACE}
 
 echo "Creating ArgoCD Project ${ARGOCD_PROJECT_NAME}"
 
 argocd proj create ${ARGOCD_PROJECT_NAME} \
-   --dest https://kubernetes.default.svc,${ARGOCD_TOOLING_NAMESPACE} \
+   --dest https://kubernetes.default.svc,* \
    --src ${ARGOCD_GIT_URL} \
    --description "ArgoCD Project for Tooling"
 
@@ -77,7 +77,7 @@ argocd app create ${ARGOCD_APP_NAME} \
   --repo ${ARGOCD_GIT_URL} \
   --path tooling \
   --revision HEAD \
-  --dest-namespace ${ARGOCD_TOOLING_NAMESPACE} \
+  --dest-namespace ${ARGOCD_NAMESPACE} \
   --dest-server https://kubernetes.default.svc
 
 

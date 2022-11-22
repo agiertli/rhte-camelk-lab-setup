@@ -22,11 +22,11 @@ while getopts "p:" opt; do
   esac
 done
 
-# echo "Creating namespace : argocd"
-# oc apply -f namespace.yaml
-# oc project openshift-o
-# echo "Creating OperatorGroup: argocd-operator"
-# oc apply -f operator-group.yaml
+echo "Creating namespace : argocd"
+oc apply -f namespace.yaml
+oc project openshift-o
+echo "Creating OperatorGroup: argocd-operator"
+oc apply -f operator-group.yaml
 echo "Creating Subscription: argocd"
 oc apply -f argocd-subs.yaml
 echo "Creating ArgoCD CR : ${ARGOCD_CR_NAME}"

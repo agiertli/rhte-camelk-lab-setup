@@ -22,7 +22,6 @@ while getopts "p:" opt; do
   esac
 done
 
-
 echo "Creating Subscription: argocd"
 oc apply -f argocd-subs.yaml
 
@@ -33,23 +32,11 @@ sleep 5
 done
 oc -n $ARGOCD_NAMESPACE patch secret $ARGOCD_CR_NAME-cluster --patch "{\"stringData\": {\"admin.password\": \"$ARGOCD_ADMIN_PASSWORD\"}}"
 
-# echo "Logging into the ArgoCD instance..waiting for 30s to allow ArgoCD redeploy after patching"
-# sleep 30
-# argocd login \
-#   --grpc-web \
-#   --username admin \
-#   --password $ARGOCD_ADMIN_PASSWORD \
-#   $(oc get route ${ARGOCD_CR_NAME}-server -n ${ARGOCD_NAMESPACE} --template='{{ .spec.host }}')
-
-# echo "Adding Github Repository ${ARGOCD_GIT_URL}"
-# argocd repo add ${ARGOCD_GIT_URL} --name ${ARGOCD_GIT_NAME}
-
-
 echo "Setting ArgoCD permissions"
-oc new-project tooling
+oc new-project ${ARGOCD_TOOLING_NAMESPACE}
 oc policy add-role-to-user \
    edit \
-   system:serviceaccount:openshift-gitops:openshift-gitops-argocd-application-controller \
+   system:serviceaccount:${ARGOCD_CR_NAME}:${ARGOCD_CR_NAME}-argocd-application-controller \
    --rolebinding-name=argocd-edit \
    -n ${ARGOCD_TOOLING_NAMESPACE}
 

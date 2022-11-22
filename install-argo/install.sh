@@ -61,7 +61,4 @@ echo "Creating ArgoCD App of Apps ${ARGOCD_APP_NAME}"
 
 oc apply -f app-of-apps.yaml -n ${ARGOCD_NAMESPACE}
 
-argocd app set ${ARGOCD_APP_NAME} --sync-policy automated --self-heal
-#argocd app set ${ARGOCD_APP_NAME} --sync-option CreateNamespace=true
-
 echo "Installation complete!" 

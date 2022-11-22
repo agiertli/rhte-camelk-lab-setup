@@ -43,8 +43,8 @@ sleep 5
 done
 oc -n $ARGOCD_NAMESPACE patch secret $ARGOCD_CR_NAME-cluster --patch "{\"stringData\": {\"admin.password\": \"$ARGOCD_ADMIN_PASSWORD\"}}"
 
-echo "Logging into the ArgoCD instance.."
-sleep 5
+echo "Logging into the ArgoCD instance..waiting for 30s to allow ArgoCD redeploy after patching"
+sleep 30
 argocd login \
   --grpc-web \
   --username admin \
@@ -54,12 +54,13 @@ argocd login \
 echo "Adding Github Repository ${ARGOCD_GIT_URL}"
 argocd repo add ${ARGOCD_GIT_URL} --name ${ARGOCD_GIT_NAME}
 
-echo "Setting ArgoCD permissions"
-oc policy add-role-to-user \
-   edit \
-   system:serviceaccount:admin-argocd:argocd-argocd-application-controller \
-   --rolebinding-name=argocd-edit \
-   -n ${ARGOCD_TOOLING_NAMESPACE}
+
+# echo "Setting ArgoCD permissions"
+# oc policy add-role-to-user \
+#    edit \
+#    system:serviceaccount:admin-argocd:argocd-argocd-application-controller \
+#    --rolebinding-name=argocd-edit \
+#    -n ${ARGOCD_TOOLING_NAMESPACE}
 
 echo "Creating ArgoCD Project ${ARGOCD_PROJECT_NAME}"
 
@@ -77,6 +78,7 @@ argocd app create ${ARGOCD_APP_NAME} \
   --revision HEAD \
   --dest-namespace ${ARGOCD_TOOLING_NAMESPACE} \
   --dest-server https://kubernetes.default.svc
+
 
 argocd app set ${ARGOCD_APP_NAME} --sync-policy automated --self-heal
 

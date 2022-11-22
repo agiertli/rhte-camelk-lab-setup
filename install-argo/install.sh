@@ -24,7 +24,7 @@ done
 
 echo "Creating namespace : argocd"
 oc apply -f namespace.yaml
-oc project openshift-o
+oc project ${ARGOCD_NAMESPACE}
 echo "Creating OperatorGroup: argocd-operator"
 oc apply -f operator-group.yaml
 echo "Creating Subscription: argocd"

@@ -14,3 +14,6 @@ spec:
     path: camelk
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
+  syncPolicy:
+    automated:
+      selfHeal: true

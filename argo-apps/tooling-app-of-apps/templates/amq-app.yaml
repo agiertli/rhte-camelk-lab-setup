@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: camelk
+  name: amq7
   namespace: {{ .Values.argo.namespace }}
   finalizers:
   - resources-finalizer.argocd.argoproj.io

@@ -1,12 +1,12 @@
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
-  name: nexus-operator-m88i
+  name: nxrm-operator-certified
   namespace: tooling
 spec:
-  channel: alpha
+  channel: stable
   installPlanApproval: Automatic
-  startingCSV: nexus-operator.v0.6.0
-  source: redhat-operators
+  startingCSV: nxrm-operator-certified.v3.41.1-1
+  source: certified-operators
   sourceNamespace: openshift-marketplace
-  name: nexus-operator-m88i
+  name: nxrm-operator-certified

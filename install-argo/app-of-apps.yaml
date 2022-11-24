@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: rhte-camelk-tooling
   source:
-    path: tooling
+    path: argo-apps/tooling-app-of-apps
     repoURL: https://github.com/agiertli/rhte-camelk.git
     targetRevision: HEAD
   syncPolicy:

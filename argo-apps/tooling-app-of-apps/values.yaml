@@ -8,3 +8,8 @@ argo:
   namespace: openshift-gitops
   destination: tooling
   project: rhte-camelk-tooling       
+
+applications:
+   - name: camelk
+   - name: nexus
+   - name: amq7

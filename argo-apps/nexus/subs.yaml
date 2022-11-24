@@ -1,0 +1,12 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: nexus-operator-m88i
+  namespace: tooling
+spec:
+  channel: alpha
+  installPlanApproval: Automatic
+  startingCSV: nexus-operator.v0.6.0
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+  name: nexus-operator-m88i

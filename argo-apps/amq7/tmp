@@ -1,0 +1,381 @@
+apiVersion: packages.operators.coreos.com/v1
+kind: PackageManifest
+metadata:
+  creationTimestamp: "2022-11-21T21:11:06Z"
+  labels:
+    catalog: redhat-operators
+    catalog-namespace: openshift-marketplace
+    operator-activemqartemis: "true"
+    operatorframework.io/arch.amd64: supported
+    operatorframework.io/arch.ppc64le: supported
+    operatorframework.io/arch.s390x: supported
+    operatorframework.io/os.linux: supported
+    provider: Red Hat
+    provider-url: ""
+  name: amq-broker-rhel8
+  namespace: openshift-marketplace
+spec: {}
+status:
+  catalogSource: redhat-operators
+  catalogSourceDisplayName: Red Hat Operators
+  catalogSourceNamespace: openshift-marketplace
+  catalogSourcePublisher: Red Hat
+  channels:
+  - currentCSV: amq-broker-operator.v7.10.1-opr-2
+    currentCSVDesc:
+      annotations:
+        alm-examples: |-
+          [{
+              "apiVersion": "broker.amq.io/v1beta1",
+              "kind": "ActiveMQArtemis",
+              "metadata": {
+                  "name": "ex-aao",
+                  "application": "ex-aao-app"
+              },
+              "spec": {
+                  "deploymentPlan": {
+                      "image": "placeholder",
+                      "size": 2,
+                      "requireLogin": false,
+                      "persistenceEnabled": false,
+                      "journalType": "nio",
+                      "messageMigration": false,
+                      "jolokiaAgentEnabled": false,
+                      "managementRBACEnabled": true
+                  }
+              }
+          }, {
+              "apiVersion": "broker.amq.io/v1beta1",
+              "kind": "ActiveMQArtemisAddress",
+              "metadata": {
+                  "name": "ex-aaoaddress"
+              },
+              "spec": {
+                  "addressName": "myAddress0",
+                  "queueName": "myQueue0",
+                  "routingType": "anycast"
+              }
+          }, {
+              "apiVersion": "broker.amq.io/v1beta1",
+              "kind": "ActiveMQArtemisScaledown",
+              "metadata": {
+                  "name": "ex-aaoscaledown"
+              },
+              "spec": {
+                  "localOnly": "true"
+              }
+          }, {
+              "apiVersion": "broker.amq.io/v1beta1",
+              "kind": "ActiveMQArtemisSecurity",
+              "metadata": {
+                  "name": "ex-keycloak"
+              },
+              "spec": {
+                  "loginModules": {
+                      "propertiesLoginModules": [
+                          {
+                              "name": "prop-module",
+                              "users": [
+                                  {
+                                      "name": "superman",
+                                      "roles": [
+                                          "root"
+                                      ]
+                                  }
+                              ]
+                          }
+                      ]
+                  },
+                  "securityDomains": {
+                      "brokerDomain": {
+                          "name": "activemq",
+                          "loginModules": [
+                              {
+                                  "name": "prop-module",
+                                  "flag": "sufficient"
+                              }
+                          ]
+                      }
+                  }
+              }
+          }]
+        capabilities: Seamless Upgrades
+        categories: Streaming & Messaging
+        certified: "false"
+        containerImage: registry.redhat.io/amq7/amq-broker-rhel8-operator@sha256:5d2724e47369385239e65df4db96c3e7956168931aabc55043f6dfdbe5cf28bb
+        createdAt: "2021-06-18T00:02:04Z"
+        description: AMQ Broker Operator for RHEL 8 (Multiarch) provides the ability
+          to deploy and manage stateful AMQ Broker clusters
+        operators.openshift.io/valid-subscription: '["Red Hat Runtimes", "Red Hat
+          Integration", "Red Hat Process Automation", "Red Hat AMQ"]'
+        repository: https://github.com/rh-messaging/activemq-artemis-operator
+        support: Red Hat
+        tectonic-visibility: ocs
+      apiservicedefinitions: {}
+      customresourcedefinitions:
+        owned:
+        - description: A stateful deployment of one or more brokers
+          displayName: AMQ Broker
+          kind: ActiveMQArtemis
+          name: activemqartemises.broker.amq.io
+          version: v1beta1
+        - description: Adding and removing addresses via custom resource definitions
+          displayName: AMQ Broker Address
+          kind: ActiveMQArtemisAddress
+          name: activemqartemisaddresses.broker.amq.io
+          version: v1beta1
+        - description: Provides message migration on clustered broker scaledown
+          displayName: AMQ Broker Scaledown
+          kind: ActiveMQArtemisScaledown
+          name: activemqartemisscaledowns.broker.amq.io
+          version: v1beta1
+        - description: Security configuration for the broker
+          kind: ActiveMQArtemisSecurity
+          name: activemqartemissecurities.broker.amq.io
+          version: v1beta1
+      description: AMQ Broker Operator for RHEL 8 (Multiarch) provides the ability
+        to deploy and manage stateful AMQ Broker broker clusters
+      displayName: Red Hat Integration - AMQ Broker for RHEL 8 (Multiarch)
+      installModes:
+      - supported: true
+        type: OwnNamespace
+      - supported: true
+        type: SingleNamespace
+      - supported: true
+        type: MultiNamespace
+      - supported: true
+        type: AllNamespaces
+      keywords:
+      - activemqartemis
+      - operator
+      links:
+      - name: Product Page
+        url: https://access.redhat.com/products/red-hat-amq/
+      - name: Documentation
+        url: https://access.redhat.com/documentation/en-us/red_hat_amq/
+      maintainers:
+      - email: rkieley@redhat.com
+        name: Red Hat
+      maturity: beta
+      provider:
+        name: Red Hat
+      relatedImages:
+      - registry.redhat.io/amq7/amq-broker-openj9-11-rhel8@sha256:f2651cb097eb631fc6af90e4a8404d36516aa2205c546125bf0c37739ab525fa
+      - registry.redhat.io/amq7/amq-broker-init-rhel8@sha256:e03945756d86bd189e8c33027fa668d2065c168510085dfd06defd9f40d3e0ab
+      - registry.redhat.io/amq7/amq-broker-init-rhel8@sha256:b575d6eebf44dc9049445e357488efb17a690953852419b534df30e0105b9ca4
+      - registry.redhat.io/amq7/amq-broker-init-rhel8@sha256:f58678f03a250dbb296ebeb112c9150340155799ba4dad9e90bf347b9ed0ca7b
+      - registry.redhat.io/amq7/amq-broker-init-openjdk-11-rhel8@sha256:d4a9176f49ffd9db6051fbda15d47a1aa32c282fb5010d0caf5b9243e80bf055
+      - registry.redhat.io/amq7/amq-broker-rhel8@sha256:58ce7f0460948afd017f7005a0b82564faf6e10414e014784c80fc8019126ab2
+      - registry.redhat.io/amq7/amq-broker-rhel8@sha256:3219f90789690a3c5cfcc86e5f602c443e75f1fdb3a19660f43ee3996bfa8f62
+      - registry.redhat.io/amq7/amq-broker-openj9-11-rhel8@sha256:34ab1f66d8daa544e3823464383e9788e307665c875499838fbed95f3a74a4dd
+      - registry.redhat.io/amq7/amq-broker-init-openj9-11-rhel8@sha256:5ff28e3062d3eabb9f52d8271b837fdab06cafbd8b8f732b1bc00de49ad69aad
+      - registry.redhat.io/amq7/amq-broker-rhel8@sha256:5d39f26f06769fe5c989ea0e0ee8f9166120e152ce2c9bc3336fc8d7cab2ff92
+      - registry.redhat.io/amq7/amq-broker-rhel8@sha256:c5f4c08e068b9721967cf7c7cbd9a9e93fb5e39b264dd13b653e99d8f3fa9e0e
+      - registry.redhat.io/amq7/amq-broker-init-openj9-11-rhel8@sha256:9465e398a55c89c121b3ae50374414190a991839fa5e1018fc02551f6aa3b9aa
+      - registry.redhat.io/amq7/amq-broker-init-openj9-11-rhel8@sha256:1a9f13fd565113055b2aa2022bd0709a63c1dc058a8570e0fd7eba5c7b101334
+      - registry.redhat.io/amq7/amq-broker-init-rhel8@sha256:0251aae45fcdcaeb1ccc18a297d2e0ea5fb4d12ae1fd1c5ddfed326b6df4a707
+      - registry.redhat.io/amq7/amq-broker-init-rhel8@sha256:61e5a8c1e46f1c18648e0406e2a57c52f911979079020cc57c7a4b06a56940bb
+      - registry.redhat.io/amq7/amq-broker-init-rhel8@sha256:ba21779c29b431a22c824e91820705c9501fb0b7d6f7e1ae22fcd3becc8c8a2f
+      - registry.redhat.io/amq7/amq-broker-init-rhel8@sha256:b74d03ed852a3731467ffda95266ce49f2065972f1c37bf254f3d52b34c11991
+      - registry.redhat.io/amq7/amq-broker-rhel8@sha256:3c00b524722b500ff0922fe7a8722868557512183a8f69248f37a68c45c6a770
+      - registry.redhat.io/amq7/amq-broker-init-openj9-11-rhel8@sha256:56282c6a461e945a83bffb13d3f3d8d9621800f0fc9cd755a75d21eacd8f5fbf
+      - registry.redhat.io/amq7/amq-broker-openjdk-11-rhel8@sha256:7abfdcfd7b2d3d12b9234f7b057bd199bceefa47bdf02f62236f82a13fdbf5b7
+      - registry.redhat.io/amq7/amq-broker-init-openj9-11-rhel8@sha256:2cb14c917246ffcbd5d861ca6f3d58cb1146a4e55715ee08160e115d3dfc1c3e
+      - registry.redhat.io/amq7/amq-broker-init-openjdk-11-rhel8@sha256:aa7af7e038a12b5202108b362c8af243954603e84034a16c0192684c86d5d28b
+      - registry.redhat.io/amq7/amq-broker-openj9-11-rhel8@sha256:97c3aa5673610875a53571449f7d5210ae8d675072d044f17b416725ed0dba88
+      - registry.redhat.io/amq7/amq-broker-rhel8@sha256:979b59325aa0f34eb05625201beba53fccbb83bd5eb80a89dcb5261ae358138f
+      - registry.redhat.io/amq7/amq-broker-openjdk-11-rhel8@sha256:967d840b831b310abd3a468a8652d1fa48b2ce28b342bfab53999245deb004f1
+      - registry.redhat.io/amq7/amq-broker-rhel8@sha256:0d857b95084e39c011651be89482d4dcc77c2d1c3ac3c6a819f3c9d5a57a425f
+      - registry.redhat.io/amq7/amq-broker-init-rhel8@sha256:0b2126cfb6054fdf428c1f43b69e36e93a09a49ce15350e9273c98cc08c6598b
+      - registry.redhat.io/amq7/amq-broker-rhel8@sha256:6e9e0e3fddc44fbf87591d8904176407f1ec409d578a7d108c13cdd48d85131b
+      - registry.redhat.io/amq7/amq-broker-init-openj9-11-rhel8@sha256:c3ac4602b48867f3d4f7cc0efd5c9f133098e409626cfb402f80386ff460dbf4
+      - registry.redhat.io/amq7/amq-broker-rhel8-operator@sha256:5d2724e47369385239e65df4db96c3e7956168931aabc55043f6dfdbe5cf28bb
+      - registry.redhat.io/amq7/amq-broker-openj9-11-rhel8@sha256:4440b20349032bb5c0bb2a8deb89832b37767af6f0b3208b067867a85641913e
+      - registry.redhat.io/amq7/amq-broker-init-rhel8@sha256:45a5e054546a2c1ee338518f8477f728f5f7108c9dd8b516b4c79d4a7d6f5ba7
+      - registry.redhat.io/amq7/amq-broker-rhel8@sha256:ae79b5dab78c4f48993fd8999b09bdcaa918b8e30a9f750bf24d411710f71928
+      - registry.redhat.io/amq7/amq-broker-rhel8@sha256:67ae74e72927557c55611d0248347b2099b117ac1aa245dac05856fe782fb59c
+      - registry.redhat.io/amq7/amq-broker-init-rhel8@sha256:4e09ee3bd8ff3479fdd00e221b7b1505ae04ca6c64fd6bc9e2f1a34b8e98d137
+      - registry.redhat.io/amq7/amq-broker-openj9-11-rhel8@sha256:d4010af53429502f41d722c39d69a7bb147bb06d19e3d4a69de70dbe88e3990e
+      - registry.redhat.io/amq7/amq-broker-openj9-11-rhel8@sha256:ba0f5df7da08bc030ff5e0e68ecb52a931c25f6b67c6556aa8a9661c82d69d42
+      version: 7.10.1-opr-2
+    name: 7.10.x
+  - currentCSV: amq-broker-operator.v7.9.4-opr-5
+    currentCSVDesc:
+      annotations:
+        alm-examples: |-
+          [{
+              "apiVersion": "broker.amq.io/v2alpha5",
+              "kind": "ActiveMQArtemis",
+              "metadata": {
+                  "name": "ex-aao",
+                  "application": "ex-aao-app"
+              },
+              "spec": {
+                  "deploymentPlan": {
+                      "image": "placeholder",
+                      "size": 2,
+                      "requireLogin": false,
+                      "persistenceEnabled": false,
+                      "journalType": "nio",
+                      "messageMigration": false,
+                      "jolokiaAgentEnabled": false,
+                      "managementRBACEnabled": true
+                  }
+              }
+          }, {
+              "apiVersion": "broker.amq.io/v2alpha3",
+              "kind": "ActiveMQArtemisAddress",
+              "metadata": {
+                  "name": "ex-aaoaddress"
+              },
+              "spec": {
+                  "addressName": "myAddress0",
+                  "queueName": "myQueue0",
+                  "routingType": "anycast"
+              }
+          }, {
+              "apiVersion": "broker.amq.io/v2alpha1",
+              "kind": "ActiveMQArtemisScaledown",
+              "metadata": {
+                  "name": "ex-aaoscaledown"
+              },
+              "spec": {
+                  "localOnly": "true"
+              }
+          }, {
+              "apiVersion": "broker.amq.io/v1alpha1",
+              "kind": "ActiveMQArtemisSecurity",
+              "metadata": {
+                  "name": "ex-keycloak"
+              },
+              "spec": {
+                  "loginModules": {
+                      "propertiesLoginModules": [
+                          {
+                              "name": "prop-module",
+                              "users": [
+                                  {
+                                      "name": "superman",
+                                      "roles": [
+                                          "root"
+                                      ]
+                                  }
+                              ]
+                          }
+                      ]
+                  },
+                  "securityDomains": {
+                      "brokerDomain": {
+                          "name": "activemq",
+                          "loginModules": [
+                              {
+                                  "name": "prop-module",
+                                  "flag": "sufficient"
+                              }
+                          ]
+                      }
+                  }
+              }
+          }]
+        capabilities: Seamless Upgrades
+        categories: Streaming & Messaging
+        certified: "false"
+        containerImage: registry.redhat.io/amq7/amq-broker-rhel8-operator@sha256:3323ce52c915c7a99428cae268c2c0e41be1012d80b73221853f3a893b9f56e1
+        createdAt: "2021-06-18T00:02:04Z"
+        description: AMQ Broker Operator for RHEL 8 (Multiarch) provides the ability
+          to deploy and manage stateful AMQ Broker clusters
+        olm.skipRange: '>=7.9.0<7.9.4-opr-5'
+        operators.openshift.io/valid-subscription: '["OpenShift Container Platform",
+          "OpenShift Platform Plus", "Red Hat Runtimes", "Red Hat Integration", "Red
+          Hat Process Automation", "Red Hat AMQ", "Red Hat Application Foundations"]'
+        repository: https://github.com/rh-messaging/activemq-artemis-operator
+        support: Red Hat
+        tectonic-visibility: ocs
+      apiservicedefinitions: {}
+      customresourcedefinitions:
+        owned:
+        - description: A stateful deployment of one or more brokers
+          displayName: AMQ Broker
+          kind: ActiveMQArtemis
+          name: activemqartemises.broker.amq.io
+          version: v2alpha5
+        - description: Adding and removing addresses via custom resource definitions
+          displayName: AMQ Broker Address
+          kind: ActiveMQArtemisAddress
+          name: activemqartemisaddresses.broker.amq.io
+          version: v2alpha3
+        - description: Provides message migration on clustered broker scaledown
+          displayName: AMQ Broker Scaledown
+          kind: ActiveMQArtemisScaledown
+          name: activemqartemisscaledowns.broker.amq.io
+          version: v2alpha1
+        - description: Security configuration for the broker
+          kind: ActiveMQArtemisSecurity
+          name: activemqartemissecurities.broker.amq.io
+          version: v1alpha1
+      description: AMQ Broker Operator for RHEL 8 (Multiarch) provides the ability
+        to deploy and manage stateful AMQ Broker broker clusters
+      displayName: Red Hat Integration - AMQ Broker for RHEL 8 (Multiarch)
+      installModes:
+      - supported: true
+        type: OwnNamespace
+      - supported: true
+        type: SingleNamespace
+      - supported: true
+        type: MultiNamespace
+      - supported: true
+        type: AllNamespaces
+      keywords:
+      - activemqartemis
+      - operator
+      links:
+      - name: Product Page
+        url: https://access.redhat.com/products/red-hat-amq/
+      - name: Documentation
+        url: https://access.redhat.com/documentation/en-us/red_hat_amq/
+      maintainers:
+      - email: rkieley@redhat.com
+        name: Red Hat
+      maturity: alpha
+      provider:
+        name: Red Hat
+      relatedImages:
+      - registry.redhat.io/amq7/amq-broker-openj9-11-rhel8@sha256:ba0f5df7da08bc030ff5e0e68ecb52a931c25f6b67c6556aa8a9661c82d69d42
+      - registry.redhat.io/amq7/amq-broker-openj9-11-rhel8@sha256:f2651cb097eb631fc6af90e4a8404d36516aa2205c546125bf0c37739ab525fa
+      - registry.redhat.io/amq7/amq-broker-openj9-11-rhel8@sha256:34ab1f66d8daa544e3823464383e9788e307665c875499838fbed95f3a74a4dd
+      - registry.redhat.io/amq7/amq-broker-init-rhel8@sha256:61e5a8c1e46f1c18648e0406e2a57c52f911979079020cc57c7a4b06a56940bb
+      - registry.redhat.io/amq7/amq-broker-init-rhel8@sha256:0b2126cfb6054fdf428c1f43b69e36e93a09a49ce15350e9273c98cc08c6598b
+      - registry.redhat.io/amq7/amq-broker-init-openj9-11-rhel8@sha256:9465e398a55c89c121b3ae50374414190a991839fa5e1018fc02551f6aa3b9aa
+      - registry.redhat.io/amq7/amq-broker-openjdk-11-rhel8@sha256:7abfdcfd7b2d3d12b9234f7b057bd199bceefa47bdf02f62236f82a13fdbf5b7
+      - registry.redhat.io/amq7/amq-broker-rhel8@sha256:979b59325aa0f34eb05625201beba53fccbb83bd5eb80a89dcb5261ae358138f
+      - registry.redhat.io/amq7/amq-broker-init-openj9-11-rhel8@sha256:56282c6a461e945a83bffb13d3f3d8d9621800f0fc9cd755a75d21eacd8f5fbf
+      - registry.redhat.io/amq7/amq-broker-rhel8@sha256:3219f90789690a3c5cfcc86e5f602c443e75f1fdb3a19660f43ee3996bfa8f62
+      - registry.redhat.io/amq7/amq-broker-openj9-11-rhel8@sha256:97c3aa5673610875a53571449f7d5210ae8d675072d044f17b416725ed0dba88
+      - registry.redhat.io/amq7/amq-broker-init-rhel8@sha256:e03945756d86bd189e8c33027fa668d2065c168510085dfd06defd9f40d3e0ab
+      - registry.redhat.io/amq7/amq-broker-init-openj9-11-rhel8@sha256:2cb14c917246ffcbd5d861ca6f3d58cb1146a4e55715ee08160e115d3dfc1c3e
+      - registry.redhat.io/amq7/amq-broker-rhel8@sha256:6e9e0e3fddc44fbf87591d8904176407f1ec409d578a7d108c13cdd48d85131b
+      - registry.redhat.io/amq7/amq-broker-init-rhel8@sha256:ba21779c29b431a22c824e91820705c9501fb0b7d6f7e1ae22fcd3becc8c8a2f
+      - registry.redhat.io/amq7/amq-broker-rhel8@sha256:c5f4c08e068b9721967cf7c7cbd9a9e93fb5e39b264dd13b653e99d8f3fa9e0e
+      - registry.redhat.io/amq7/amq-broker-rhel8@sha256:5d39f26f06769fe5c989ea0e0ee8f9166120e152ce2c9bc3336fc8d7cab2ff92
+      - registry.redhat.io/amq7/amq-broker-init-openj9-11-rhel8@sha256:c3ac4602b48867f3d4f7cc0efd5c9f133098e409626cfb402f80386ff460dbf4
+      - registry.redhat.io/amq7/amq-broker-init-openj9-11-rhel8@sha256:5ff28e3062d3eabb9f52d8271b837fdab06cafbd8b8f732b1bc00de49ad69aad
+      - registry.redhat.io/amq7/amq-broker-openjdk-11-rhel8@sha256:967d840b831b310abd3a468a8652d1fa48b2ce28b342bfab53999245deb004f1
+      - registry.redhat.io/amq7/amq-broker-rhel8@sha256:0d857b95084e39c011651be89482d4dcc77c2d1c3ac3c6a819f3c9d5a57a425f
+      - registry.redhat.io/amq7/amq-broker-init-rhel8@sha256:45a5e054546a2c1ee338518f8477f728f5f7108c9dd8b516b4c79d4a7d6f5ba7
+      - registry.redhat.io/amq7/amq-broker-init-rhel8@sha256:b74d03ed852a3731467ffda95266ce49f2065972f1c37bf254f3d52b34c11991
+      - registry.redhat.io/amq7/amq-broker-init-rhel8@sha256:4e09ee3bd8ff3479fdd00e221b7b1505ae04ca6c64fd6bc9e2f1a34b8e98d137
+      - registry.redhat.io/amq7/amq-broker-init-openj9-11-rhel8@sha256:1a9f13fd565113055b2aa2022bd0709a63c1dc058a8570e0fd7eba5c7b101334
+      - registry.redhat.io/amq7/amq-broker-rhel8@sha256:67ae74e72927557c55611d0248347b2099b117ac1aa245dac05856fe782fb59c
+      - registry.redhat.io/amq7/amq-broker-openj9-11-rhel8@sha256:d4010af53429502f41d722c39d69a7bb147bb06d19e3d4a69de70dbe88e3990e
+      - registry.redhat.io/amq7/amq-broker-init-rhel8@sha256:f58678f03a250dbb296ebeb112c9150340155799ba4dad9e90bf347b9ed0ca7b
+      - registry.redhat.io/amq7/amq-broker-init-openjdk-11-rhel8@sha256:d4a9176f49ffd9db6051fbda15d47a1aa32c282fb5010d0caf5b9243e80bf055
+      - registry.redhat.io/amq7/amq-broker-openj9-11-rhel8@sha256:4440b20349032bb5c0bb2a8deb89832b37767af6f0b3208b067867a85641913e
+      - registry.redhat.io/amq7/amq-broker-init-openjdk-11-rhel8@sha256:aa7af7e038a12b5202108b362c8af243954603e84034a16c0192684c86d5d28b
+      - registry.redhat.io/amq7/amq-broker-rhel8-operator@sha256:3323ce52c915c7a99428cae268c2c0e41be1012d80b73221853f3a893b9f56e1
+      - registry.redhat.io/amq7/amq-broker-rhel8@sha256:ae79b5dab78c4f48993fd8999b09bdcaa918b8e30a9f750bf24d411710f71928
+      version: 7.9.4-opr-5
+    name: 7.x
+  defaultChannel: 7.10.x
+  packageName: amq-broker-rhel8
+  provider:
+    name: Red Hat

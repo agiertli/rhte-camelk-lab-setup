@@ -13,4 +13,4 @@ applications:
    - name: camelk
    - name: nexus
    - name: amq7
-   - name: sealed-secrets
+   - name: sealed-secrets/overlays/default

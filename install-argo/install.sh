@@ -39,6 +39,7 @@ oc policy add-role-to-user \
    system:serviceaccount:${ARGOCD_CR_NAME}:${ARGOCD_CR_NAME}-argocd-application-controller \
    --rolebinding-name=argocd-edit \
    -n ${ARGOCD_TOOLING_NAMESPACE}
+oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:openshift-gitops:openshift-gitops-argocd-application-controller    
 
 echo "Creating ArgoCD Project ${ARGOCD_PROJECT_NAME}"
 

@@ -1,0 +1,71 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
+    <localRepository/>
+    <interactiveMode/>
+    <offline/>
+    <pluginGroups/>
+    <servers>
+<!--     <server>
+      <id>camelk</id>
+      <username>admin</username>
+      <password>admin123</password>
+    </server> -->
+    </servers>
+    <mirrors/>
+    <proxies/>
+    <profiles>
+          <profile>
+            <id>redhat</id>
+            <repositories>
+              <repository>
+                  <id>rh-ga</id>
+                  <name>Red Hat public maven repo</name>
+                  <url>https://maven.repository.redhat.com/ga/</url>
+                  <releases>
+                      <enabled>true</enabled>
+                      <updatePolicy>never</updatePolicy>
+                  </releases>
+                  <snapshots>
+                      <enabled>false</enabled>
+                  </snapshots>
+             </repository>
+
+                                      <!-- <repository>
+                  <id>jenkins-ga</id>
+                  <name>jenkins repo</name>
+                  <url>https://repo.jenkins-ci.org/releases/</url>
+                  <releases>
+                      <enabled>true</enabled>
+                      <updatePolicy>never</updatePolicy>
+                  </releases>
+                  <snapshots>
+                      <enabled>false</enabled>
+                  </snapshots>
+              </repository>  -->
+          </repositories>
+
+
+
+       
+
+                <pluginRepositories>
+              <pluginRepository>
+                  <id>rh-ga</id>
+                  <name>Red Hat public maven repo</name>
+                  <url>https://maven.repository.redhat.com/ga</url>
+                  <releases>
+                      <enabled>true</enabled>
+                      <updatePolicy>never</updatePolicy>
+                  </releases>
+                  <snapshots>
+                      <enabled>false</enabled>
+                  </snapshots>
+              </pluginRepository>
+          </pluginRepositories>
+
+</profile>
+    </profiles>
+    <activeProfiles>
+        <activeProfile>redhat</activeProfile>
+    </activeProfiles>
+</settings>

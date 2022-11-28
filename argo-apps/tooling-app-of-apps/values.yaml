@@ -11,6 +11,10 @@ argo:
 
 applications:
    - name: camelk
+     path: camelk
    - name: nexus
+     path: nexus
    - name: amq7
-   - name: sealed-secrets/overlays/default
+     path: amq7
+   - name: sealed-secrets
+     path: sealed-secrets/overlays/default

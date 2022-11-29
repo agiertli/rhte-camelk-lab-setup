@@ -21,6 +21,7 @@ spec:
       sslSecret: my-tls-secret
       expose: true
       verifyHost: false
+      trustStoreType: PKCS12
   deploymentPlan:
     image: placeholder
     size: 1

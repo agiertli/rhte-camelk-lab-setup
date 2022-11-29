@@ -13,12 +13,14 @@ spec:
       protocols: 'amqp,core'
       expose: true
       sslEnabled: false
+      verifyHost: false
     - name: ssl
       port: 5673
       protocols: 'amqp,core'
       sslEnabled: true
       sslSecret: my-tls-secret
       expose: true
+      verifyHost: false
   deploymentPlan:
     image: placeholder
     size: 1

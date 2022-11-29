@@ -20,3 +20,5 @@ applications:
      path: sealed-secrets/overlays/default
    - name: namespaces
      path: namespaces  
+   - name: gitea
+     path: gitea

@@ -1,0 +1,37 @@
+apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemis
+metadata:
+  name: rhte-artemis
+  application: ex-aao-app
+  namespace: tooling
+spec:
+  acceptors:
+    - name: non-ssl
+      port: 5672
+      protocols: 'amqp,core'
+      expose: true
+      sslEnabled: false
+    - name: ssl
+      port: 5673
+      protocols: 'amqp,core'
+      sslEnabled: true
+      sslSecret: my-tls-secret
+      expose: true
+  deploymentPlan:
+    image: placeholder
+    size: 1
+    requireLogin: true
+    persistenceEnabled: false
+    journalType: nio
+    messageMigration: false
+    jolokiaAgentEnabled: false
+    managementRBACEnabled: true
+  addressSettings:
+    addressSetting:
+      - autoCreateQueues: true
+        autoCreateAddresses: true
+  console:
+    expose: true
+    useClientAuth: true
+  adminUser: admin
+  adminPassword: password1!

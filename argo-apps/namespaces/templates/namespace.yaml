@@ -1,0 +1,19 @@
+{{- range $key := .Values.namespaces }}
+---
+apiVersion: project.openshift.io/v1
+kind: Project
+metadata:
+  labels:
+    kubernetes.io/metadata.name: {{.name}}-dev
+  name: {{.name}}-dev
+{{- end }}
+
+{{- range $key := .Values.namespaces }}
+---
+apiVersion: project.openshift.io/v1
+kind: Project
+metadata:
+  labels:
+    kubernetes.io/metadata.name: {{.name}}-prod
+  name: {{.name}}-prod
+{{- end }}

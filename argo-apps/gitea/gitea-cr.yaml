@@ -1,0 +1,21 @@
+apiVersion: gpte.opentlc.com/v1
+kind: Gitea
+metadata:
+  name: rhte-camelk-gitea
+spec:
+  giteaVolumeSize: 4Gi
+  postgresqlVolumeSize: 4Gi
+  giteaSsl: true
+  giteaAdminUser: rhte-camelk
+  giteaAdminPassword: ""
+  giteaAdminPasswordLength: 8
+  giteaAdminEmail: opentlc-mgr@redhat.com
+  giteaCreateUsers: true
+  giteaGenerateUserFormat: "user%d"
+  giteaUserNumber: 10
+  giteaUserPassword: openshift
+  giteaMigrateRepositories: true
+  giteaRepositoriesList:
+  - repo: https://github.com/agiertli/rhte-camelk-user-repository
+    name: camelk-user-repository
+    private: false

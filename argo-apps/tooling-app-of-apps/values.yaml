@@ -18,3 +18,5 @@ applications:
      path: amq7
    - name: sealed-secrets
      path: sealed-secrets/overlays/default
+   - name: namespaces
+     path: namespaces  

@@ -22,6 +22,8 @@ spec:
       expose: true
       verifyHost: false
       trustStoreType: PKCS12
+      keyStoreProvider: SUN
+      trustStoreProvider: SUN
   deploymentPlan:
     image: placeholder
     size: 1

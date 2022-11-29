@@ -22,5 +22,5 @@ applications:
      path: namespaces  
    - name: gitea
      path: gitea
-  #  - name: devspaces
-  #    path: devspaces  
+   - name: devspaces
+     path: devspaces  

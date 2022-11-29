@@ -9,7 +9,7 @@ metadata:
 spec:
   channel: stable
   installPlanApproval: Automatic
-  startingCSV: nxrm-operator-certified.v3.41.1-1
+  startingCSV: nxrm-operator-certified.v3.43.0-1
   source: certified-operators
   sourceNamespace: openshift-marketplace
   name: nxrm-operator-certified

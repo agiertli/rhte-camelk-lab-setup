@@ -3,6 +3,8 @@ kind: CheCluster
 metadata:
   name: che-cluster
   namespace: tooling
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   components:
     imagePuller:

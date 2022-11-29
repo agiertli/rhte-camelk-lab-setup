@@ -15,7 +15,7 @@ subjects:
   name: {{.name}}
 {{- end }}
 
-{{- range $key := .Values.namespaces }}
+{{- range $key := .Values.users }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding

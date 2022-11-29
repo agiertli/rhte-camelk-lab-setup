@@ -1,0 +1,21 @@
+./artemis producer --url 'tcp://rhte-artemis-ssl-0-svc-rte-tooling.apps.cluster-4th5q.4th5q.sandbox1219.opentlc.com:443?useTopologyForLoadBalancing=false&sslEnabled=true&trustStorePath=client.ts&trustStorePassword=password1!&verifyHost=false' \
+--destination queue://SampleQueue \
+--user admin \
+--password password1! \
+--message-size 1024 \
+--message-count 10 --verbose
+
+
+./artemis producer --url 'tcp://rhte-artemis-non-ssl-0-svc:5672' \
+--destination queue://SampleQueue \
+--user admin \
+--password password1! \
+--message-size 1024 \
+--message-count 10 --verbose
+
+./artemis producer --url 'tcp://rhte-artemis-non-ssl-0-svc:5673' \
+--destination queue://SampleQueue \
+--user admin \
+--password password1! \
+--message-size 1024 \
+--message-count 10 --verbose

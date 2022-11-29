@@ -49,4 +49,9 @@ echo "Creating ArgoCD App of Apps ${ARGOCD_APP_NAME}"
 
 oc apply -f app-of-apps.yaml -n ${ARGOCD_NAMESPACE}
 
+echo "Sleeping for sealed secrets controller to become ready..."
+sleep 30
+echo "Replacing sealed secret controller keys.."
+../argo-apps/sealed-secrets/scripts/replace-sealed-secrets-secret.sh 
+
 echo "Installation complete!" 

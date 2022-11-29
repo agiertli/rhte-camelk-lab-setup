@@ -1,4 +1,4 @@
-{{- range $key := .Values.namespaces }}
+{{- range $key := .Values.users }}
 ---
 apiVersion: project.openshift.io/v1
 kind: Project

@@ -3,6 +3,7 @@ kind: Route
 metadata:
   annotations:
     openshift.io/host.generated: "true"
+    argocd.argoproj.io/sync-wave: "1"
   labels:
     app.kubernetes.io/managed-by: Helm
   name: nexus-route

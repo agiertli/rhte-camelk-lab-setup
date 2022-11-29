@@ -1,0 +1,1 @@
+oc secrets link sa/amq-broker-operator secret/my-tls-secret

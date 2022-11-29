@@ -2,7 +2,6 @@ apiVersion: broker.amq.io/v1beta1
 kind: ActiveMQArtemis
 metadata:
   name: rhte-artemis
-  application: ex-aao-app
   namespace: tooling
 spec:
   acceptors:

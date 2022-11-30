@@ -3,6 +3,8 @@
 apiVersion: project.openshift.io/v1
 kind: Project
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"    
   labels:
     kubernetes.io/metadata.name: {{.name}}-dev
   name: {{.name}}-dev
@@ -13,6 +15,8 @@ metadata:
 apiVersion: project.openshift.io/v1
 kind: Project
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"    
   labels:
     kubernetes.io/metadata.name: {{.name}}-prod
   name: {{.name}}-prod

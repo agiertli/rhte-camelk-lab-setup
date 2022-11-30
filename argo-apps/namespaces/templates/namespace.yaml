@@ -1,7 +1,7 @@
 {{- range $key := .Values.users }}
 ---
-apiVersion: project.openshift.io/v1
-kind: Project
+apiVersion: v1
+kind: Namespace
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-1"    
@@ -12,8 +12,8 @@ metadata:
 
 {{- range $key := .Values.users }}
 ---
-apiVersion: project.openshift.io/v1
-kind: Project
+apiVersion: v1
+kind: Namespace
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-1"    

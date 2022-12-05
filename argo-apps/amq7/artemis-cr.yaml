@@ -8,13 +8,13 @@ metadata:
     argocd.argoproj.io/sync-wave: "1"    
 spec:
   acceptors:
-    - name: non-ssl
+    - name: no-ssl
       port: 5672
       protocols: 'amqp,core'
       expose: true
       sslEnabled: false
       verifyHost: false
-    - name: ssl
+    - name: one-way-ssl
       port: 5673
       protocols: 'amqp,core'
       sslEnabled: true

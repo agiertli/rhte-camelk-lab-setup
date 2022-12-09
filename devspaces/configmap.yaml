@@ -1,0 +1,51 @@
+kind: Template
+apiVersion: v1
+metadata:
+  labels:
+    app: kubernetes-image-puller
+  name: kubernetes-image-puller
+objects:
+- apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    name: k8s-image-puller
+  type: Opaque
+  data:
+    IMAGES: ${IMAGES}
+    DAEMONSET_NAME: ${DAEMONSET_NAME}
+    CACHING_INTERVAL_HOURS: ${CACHING_INTERVAL_HOURS}
+    NAMESPACE: ${NAMESPACE}
+    CACHING_MEMORY_REQUEST: ${CACHING_MEMORY_REQUEST}
+    CACHING_MEMORY_LIMIT: ${CACHING_MEMORY_LIMIT}
+    CACHING_CPU_REQUEST: ${CACHING_CPU_REQUEST}
+    CACHING_CPU_LIMIT: ${CACHING_CPU_LIMIT}
+    NODE_SELECTOR: ${NODE_SELECTOR}
+    IMAGE_PULL_SECRETS: ${IMAGE_PULL_SECRETS}
+    AFFINITY: ${AFFINITY}
+    KIP_IMAGE: 'quay.io/eclipse/kubernetes-image-puller:next'
+parameters:
+- name: IMAGES
+  value: >
+      java11-maven=quay.io/eclipse/che-java11-maven:next;
+      che-theia=quay.io/eclipse/che-theia:next;
+      java-plugin-runner=eclipse/che-remote-plugin-runner-java8:latest;
+- name: DAEMONSET_NAME
+  value: "kubernetes-image-puller"
+- name: CACHING_INTERVAL_HOURS
+  value: "1"
+- name: NAMESPACE
+  value: "tooling"
+- name: CACHING_MEMORY_REQUEST
+  value: "10Mi"
+- name: CACHING_MEMORY_LIMIT
+  value: "20Mi"
+- name: CACHING_CPU_REQUEST
+  value: ".05"
+- name: CACHING_CPU_LIMIT
+  value: ".2"
+- name: NODE_SELECTOR
+  value: "{}"
+- name: IMAGE_PULL_SECRETS
+  value: ""
+- name: AFFINITY
+  value: "{}"

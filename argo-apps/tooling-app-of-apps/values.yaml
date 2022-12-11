@@ -22,8 +22,8 @@ applications:
      path: namespaces  
    - name: gitea
      path: gitea
-  #  - name: camelk-community
-  #    path: camelk-community  
+   - name: camelk-community
+     path: camelk-community  
    - name: tekton
      path: tekton  
   #  - name: devspaces

@@ -6,5 +6,5 @@ metadata:
   name:  camelk-instructor-operator-group
   namespace:  camelk-instructor
 spec:
-  targetNamespace:
+  targetNamespaces:
     -  camelk-instructor

@@ -5,6 +5,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "1"   
   name:  camelk-instructor-operator-group
   namespace:  camelk-instructor
-  spec:
-   targetNamespace:
+spec:
+  targetNamespace:
     -  camelk-instructor

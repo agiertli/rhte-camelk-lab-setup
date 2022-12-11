@@ -1,0 +1,8 @@
+{{- range $key := .Values.users }}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: camel-k-pipeline-sa
+  namespace: {{.name}}-dev
+{{ end }}

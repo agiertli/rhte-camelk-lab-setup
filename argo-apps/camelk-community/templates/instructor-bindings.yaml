@@ -38,5 +38,5 @@ spec:
       destinationType: topic
       destinationName: >-
         {{ .name }}-dev
-      remoteURI: amqp://rhte-artemis-no-ssl-0-svc:5672
+      remoteURI: amqp://rhte-artemis-no-ssl-0-svc.tooling.svc.cluster.local:5672
 {{- end }}

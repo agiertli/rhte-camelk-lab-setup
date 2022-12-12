@@ -52,7 +52,7 @@ spec:
           {{ "{{username}}" }}
       - key: password
         value: >-
-          {{ "{{password}}" }} 
+          {{ "{{password}}" }}
       - key: remoteURI
         value: >-
           {{ "{{remoteURI}}" }}

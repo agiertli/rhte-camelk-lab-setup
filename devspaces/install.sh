@@ -1,6 +1,5 @@
 # login to openshift as cluster admin
 
-# oc login --token=sha256~NtBsSlxUyqW60J4uAb2gCTaK5opMLEjqIpgkKrW2dys --server=https://api.cluster-rz9hh.rz9hh.sandbox1086.opentlc.com:6443
 
 # Install image puller in the tooling namespace
 
@@ -18,3 +17,5 @@ sleep 5
 
 oc patch -n tooling operatorGroups kubernetes-imagepuller-operator --patch '[{"op":"remove","path":"/spec/targetNamespaces"}]' --type=json
 
+# oc packagemanifest
+# oc get substription devspaces -o yaml | oc neat

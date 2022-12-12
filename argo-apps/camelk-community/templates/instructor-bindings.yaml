@@ -40,3 +40,46 @@ spec:
         {{ .name }}-dev
       remoteURI: amqp://rhte-artemis-no-ssl-0-svc.tooling.svc.cluster.local:5672
 {{- end }}
+
+{{- range $key := .Values.users }}
+---
+apiVersion: camel.apache.org/v1alpha1
+kind: KameletBinding
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"     
+  name: >- 
+   instructor-binding-{{ .name }}
+  namespace: camelk-instructor
+spec:
+  replicas: {{ if kindIs "float64" .replicas }}{{ .replicas }}{{ else }}{{ 1 }}{{ end }}
+  integration:
+    traits:
+      container:
+        configuration:
+          limitCPU: {{ .cpuLimit | default "100m" }}
+          requestCPU: {{ .cpuRequest | default "10m" }}
+          limitMemory: {{ .memoryLimit | default "374Mi" }}
+          requestMemory: {{ .memoryRequest | default "256Mi" }}
+  source:
+    ref:
+      kind: Kamelet
+      apiVersion: camel.apache.org/v1alpha1
+      name: timer-source-with-header
+    properties:
+      groupName: instructor
+      period: 60000
+      message: Greetingz from the instructor team
+  sink:
+    ref:
+      apiVersion: camel.apache.org/v1alpha1
+      kind: Kamelet
+      name: jms-amqp-10-sink-basic-auth
+    properties:
+      username: admin
+      password: password1!
+      destinationType: topic
+      destinationName: >-
+        {{ .name }}-prod
+      remoteURI: amqp://rhte-artemis-no-ssl-0-svc.tooling.svc.cluster.local:5672
+{{- end }}

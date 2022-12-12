@@ -26,5 +26,5 @@ applications:
      path: camelk-community  
    - name: tekton
      path: tekton  
-  #  - name: devspaces
-  #    path: devspaces  
+   - name: devspaces
+     path: devspaces  

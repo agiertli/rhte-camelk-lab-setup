@@ -1,15 +1,14 @@
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
-  name: nxrm-operator-certified
+  name: tekton
   namespace: tooling
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "-1"
+    argocd.argoproj.io/sync-wave: "-1"  
 spec:
-  channel: stable
+  channel: latest
   installPlanApproval: Automatic
-#  startingCSV: nxrm-operator-certified.v3.43.0-1
-  source: certified-operators
+  name: openshift-pipelines-operator-rh
+  source: redhat-operators
   sourceNamespace: openshift-marketplace
-  name: nxrm-operator-certified

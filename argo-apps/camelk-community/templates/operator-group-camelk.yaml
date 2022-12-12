@@ -1,0 +1,40 @@
+---
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"   
+  name:  camelk-instructor-operator-group
+  namespace:  camelk-instructor
+spec:
+  targetNamespaces:
+    -  camelk-instructor
+
+{{- range $key := .Values.users }}
+---
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"   
+  name:  {{.name}}-dev-camelk-operator-group
+  namespace:  {{.name}}-dev
+spec:
+  targetNamespaces:
+    -  {{.name}}-dev
+{{ end }}    
+
+{{- range $key := .Values.users }}
+---
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"   
+  name:  {{.name}}-prod-camelk-operator-group
+  namespace:  {{.name}}-prod
+spec:
+  targetNamespaces:
+    -  {{.name}}-prod
+{{ end }}    
+

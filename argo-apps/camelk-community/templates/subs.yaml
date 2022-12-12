@@ -1,0 +1,54 @@
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: community-camel-k-instructor
+  namespace: camelk-instructor
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "2"  
+spec:
+  channel: stable-1.10
+  installPlanApproval: Automatic
+  name: camel-k
+  source: community-operators
+  sourceNamespace: openshift-marketplace
+  startingCSV: camel-k-operator.v1.10.3
+
+{{- range $key := .Values.users }}
+--- 
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: {{.name}}-dev-community-camel-k
+  namespace: {{.name}}-dev
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "2"  
+spec:
+  channel: stable-1.10
+  installPlanApproval: Automatic
+  name: camel-k
+  source: community-operators
+  sourceNamespace: openshift-marketplace
+  startingCSV: camel-k-operator.v1.10.3
+{{ end }}
+
+{{- range $key := .Values.users }}
+--- 
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: {{.name}}-prod-community-camel-k
+  namespace: {{.name}}-prod
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "2"  
+spec:
+  channel: stable-1.10
+  installPlanApproval: Automatic
+  name: camel-k
+  source: community-operators
+  sourceNamespace: openshift-marketplace
+  startingCSV: camel-k-operator.v1.10.3
+{{ end }}

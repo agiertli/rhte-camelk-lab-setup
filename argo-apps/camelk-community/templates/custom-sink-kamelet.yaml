@@ -48,16 +48,21 @@ spec:
     - name: connectionFactoryBean
       property:
       - key: username
-        value: '{{username}}'
+        value: >-
+          {{ "{{username}}" }}
       - key: password
-        value: '{{password}}'  
+        value: >-
+          {{ "{{password}}" }} 
       - key: remoteURI
-        value: '{{remoteURI}}'
+        value: >-
+          {{ "{{remoteURI}}" }}
       type: '#class:org.apache.qpid.jms.JmsConnectionFactory'
     from:
       steps:
       - to:
           parameters:
-            connectionFactory: '#bean:{{connectionFactoryBean}}'
-          uri: jms:{{destinationType}}:{{destinationName}}
+            connectionFactory: >-
+             {{ "#bean:{{connectionFactoryBean}}" }}
+          uri: >-
+             {{ "jms:{{destinationType}}:{{destinationName}}" }}
       uri: kamelet:source

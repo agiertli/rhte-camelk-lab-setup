@@ -6,7 +6,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "4"     
   name: >- 
-   instructor-binding-{{ .name }}
+   instructor-binding-{{ .name }}-dev
   namespace: camelk-instructor
 spec:
   replicas: {{ if kindIs "float64" .replicas }}{{ .replicas }}{{ else }}{{ 1 }}{{ end }}
@@ -49,7 +49,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "4"     
   name: >- 
-   instructor-binding-{{ .name }}
+   instructor-binding-{{ .name }}-prod
   namespace: camelk-instructor
 spec:
   replicas: {{ if kindIs "float64" .replicas }}{{ .replicas }}{{ else }}{{ 1 }}{{ end }}

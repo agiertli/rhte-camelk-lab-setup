@@ -1,0 +1,13 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: workspace-preferences-configmap
+objects:  
+  - kind: ConfigMap
+    apiVersion: v1
+    metadata:
+      name: workspace-preferences-configmap
+      namespace: ${USERNAME}-devspaces
+parameters:
+- description: Username
+  name: USERNAME              

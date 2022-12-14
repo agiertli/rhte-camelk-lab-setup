@@ -1,0 +1,78 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: DevWorkspace
+objects:  
+ -      apiVersion: workspace.devfile.io/v1alpha2
+        kind: DevWorkspace
+        metadata:
+          annotations:
+            che.eclipse.org/che-editor: eclipse/che-theia/latest
+            che.eclipse.org/devfile-source: |
+              scm:
+                repo: 'http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/${USERNAME}/camelk-user-repository.git'
+                fileName: devfile.yaml
+              factory:
+                params: 'url=http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/${USERNAME}/camelk-user-repository'
+          name: demo-project
+          namespace: ${USERNAME}-devspaces
+          finalizers:
+            - storage.controller.devfile.io
+        spec:
+          routingClass: che
+          started: true
+          template:
+            attributes:
+              controller.devfile.io/devworkspace-config:
+                name: devworkspace-config
+                namespace: tooling
+              controller.devfile.io/storage-type: per-user
+              dw.metadata.annotations:
+                che.eclipse.org/che-editor: eclipse/che-theia/latest
+                che.eclipse.org/devfile-source: |
+                  scm:
+                    repo: 'http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/${USERNAME}/camelk-user-repository.git'
+                    fileName: devfile.yaml
+                  factory:
+                    params: 'url=http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/${USERNAME}/camelk-user-repository'
+            commands:
+              - exec:
+                  component: tools
+                  commandLine: " /home/user/.sdkman/candidates/jbang/current/bin/jbang trust add -o --fresh --quiet https://github.com/apache/camel/blob/HEAD/dsl/camel-jbang/camel-jbang-main/dist/CamelJBang.java && /home/user/.sdkman/candidates/jbang/current/bin/jbang app install camel@apache/camel"
+                id: install-jbang
+            components:
+              - container:
+                  cpuLimit: 1000m
+                  cpuRequest: 500m
+                  env:
+                    - name: CHE_DASHBOARD_URL
+                      value: >-
+                        https://devspaces.apps.cluster-gl48f.gl48f.sandbox467.opentlc.com
+                    - name: CHE_PLUGIN_REGISTRY_URL
+                      value: >-
+                        https://devspaces.apps.cluster-gl48f.gl48f.sandbox467.opentlc.com/plugin-registry/v3
+                    - name: CHE_PLUGIN_REGISTRY_INTERNAL_URL
+                      value: http://plugin-registry.tooling.svc:8080/v3
+                  image: quay.io/devfile/universal-developer-image:ubi8-latest
+                  memoryLimit: 3Gi
+                  memoryRequest: 1Gi
+                  sourceMapping: /projects
+                name: tools
+              - name: theia-workspace
+                plugin:
+                  kubernetes:
+                    name: ${USERNAME}-workspace
+                    namespace: ${USERNAME}-devspaces
+            projects:
+              - name: camelk-user-repository
+                git:
+                  remotes:
+                    origin: http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/${USERNAME}/camelk-user-repository  
+                  checkoutFrom:
+                    revision: main
+            events:
+              postStart:
+                - install-jbang
+parameters:
+- description: Username
+  name: USERNAME

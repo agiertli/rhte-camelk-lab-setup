@@ -1,0 +1,21 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: devworkspace-gitconfig
+objects:  
+- kind: ConfigMap
+  apiVersion: v1
+  metadata:
+    name: workspace-userdata-gitconfig-configmap
+    namespace: ${USERNAME}-devspaces
+    labels:
+      controller.devfile.io/mount-to-devworkspace: 'true'
+      controller.devfile.io/watch-configmap: 'true'
+    annotations:
+      controller.devfile.io/mount-as: subpath
+      controller.devfile.io/mount-path: /etc/
+  data:
+    gitconfig: "[user]\n\tname = ${USERNAME}\n\temail = ${USERNAME}@che"
+parameters:
+- description: Username
+  name: USERNAME              

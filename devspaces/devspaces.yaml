@@ -20,6 +20,7 @@ spec:
             echo "Checking if this works account already there..."
             git clone -b maz https://github.com/agiertli/rhte-camelk
             cd rhte-camelk/devspaces
+            
             ./createProject.sh
       serviceAccount: openshift-gitops-argocd-application-controller
       serviceAccountName: openshift-gitops-argocd-application-controller

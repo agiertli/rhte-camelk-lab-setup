@@ -2,6 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: provision-dev-spaces
+  namespace: openshift-gitops
   annotations:
     argocd.argoproj.io/hook: PostSync
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
@@ -19,10 +20,9 @@ spec:
             echo "Checking if this works account already there..."
             git clone -b maz https://github.com/agiertli/rhte-camelk
             cd rhte-camelk/devspaces
-            
-            fi
+            ./createProject.sh
       serviceAccount: openshift-gitops-argocd-application-controller
-      serviceAccountName: openshift-gitops-application-controller
+      serviceAccountName: openshift-gitops-argocd-application-controller
       dnsPolicy: ClusterFirst
       restartPolicy: OnFailure
       terminationGracePeriodSeconds: 30

@@ -1,5 +1,5 @@
 
-for i in {2..11}
+for i in {1..10}
 do
     # Create Project On Openshift
     # oc process -f workspace/namespace.yaml -p USERNAME=user$i | oc create -f - &

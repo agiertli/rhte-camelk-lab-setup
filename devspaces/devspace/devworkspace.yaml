@@ -15,7 +15,7 @@ objects:
               factory:
                 params: 'url=http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/${USERNAME}/camelk-user-repository'
           name: demo-project
-          namespace: ${USERNAME}-devspaces
+          namespace: ${USERNAME}-dev
           finalizers:
             - storage.controller.devfile.io
         spec:

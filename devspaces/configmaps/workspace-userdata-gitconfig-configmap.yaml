@@ -7,7 +7,7 @@ objects:
   apiVersion: v1
   metadata:
     name: workspace-userdata-gitconfig-configmap
-    namespace: ${USERNAME}-devspaces
+    namespace: ${USERNAME}-dev
     labels:
       controller.devfile.io/mount-to-devworkspace: 'true'
       controller.devfile.io/watch-configmap: 'true'

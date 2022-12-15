@@ -11,7 +11,7 @@ objects:
         che.eclipse.org/plugin-registry-url: >-
           https://devspaces.apps.cluster-gl48f.gl48f.sandbox467.opentlc.com/plugin-registry/v3/plugins/eclipse/che-theia/latest/devfile.yaml
       name: ${USERNAME}-workspace
-      namespace: ${USERNAME}-devspaces
+      namespace: ${USERNAME}-dev
     spec:
       commands:
         - apply:

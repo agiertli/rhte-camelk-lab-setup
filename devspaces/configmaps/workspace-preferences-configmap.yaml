@@ -7,7 +7,7 @@ objects:
     apiVersion: v1
     metadata:
       name: workspace-preferences-configmap
-      namespace: ${USERNAME}-devspaces
+      namespace: ${USERNAME}-dev
 parameters:
 - description: Username
   name: USERNAME              

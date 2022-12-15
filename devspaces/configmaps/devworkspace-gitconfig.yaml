@@ -7,7 +7,7 @@ objects:
     apiVersion: v1
     metadata:
       name: devworkspace-gitconfig
-      namespace: ${USERNAME}-devspaces
+      namespace: ${USERNAME}-dev
       labels:
         app.kubernetes.io/defaultName: git-config-secret
         app.kubernetes.io/part-of: devworkspace-operator

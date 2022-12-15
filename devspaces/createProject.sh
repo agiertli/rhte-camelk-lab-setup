@@ -5,7 +5,7 @@ do
     oc process -f workspace/namespace.yaml -p USERNAME=user$i | oc create -f - &
     sleep 0.5
     # Gives user access to namespace
-    oc adm policy add-role-to-user admin user$i -n user$i-devspaces
+    oc adm policy add-role-to-user admin user$i -n user$i-dev
 
     # Grant permissions
     oc process -f workspace/auth.yaml -p USERNAME=user$i -p UUID=$(oc get users.user.openshift.io user$i | awk 'FNR == 2 { print $2 }') | oc create -f - &

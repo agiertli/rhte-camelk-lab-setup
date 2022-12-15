@@ -6,7 +6,7 @@ objects:
  - kind: Namespace
    apiVersion: v1
    metadata:
-    name: ${USERNAME}-devspaces
+    name: ${USERNAME}-dev
     labels:
       app.kubernetes.io/part-of: che.eclipse.org
       app.kubernetes.io/component: workspaces-namespace

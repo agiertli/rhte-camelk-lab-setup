@@ -23,5 +23,6 @@ do
     # Create the workspace
     oc process -f devspace/devworkspace-template.yaml -p USERNAME=user$i | oc create -f - -n user$i-dev
     oc process -f devspace/devworkspace.yaml -p USERNAME=user$i | oc create -f - -n user$i-dev &
-    
+
+    echo user$i devspace created
 done

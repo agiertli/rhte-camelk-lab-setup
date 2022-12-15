@@ -62,7 +62,7 @@ objects:
                 plugin:
                   kubernetes:
                     name: ${USERNAME}-workspace
-                    namespace: ${USERNAME}-devspaces
+                    namespace: ${USERNAME}-dev
             projects:
               - name: camelk-user-repository
                 git:

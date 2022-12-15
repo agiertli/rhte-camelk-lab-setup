@@ -27,4 +27,4 @@ applications:
    - name: tekton
      path: tekton  
    - name: devspaces
-     path: devspaces
+     path: devspaces  

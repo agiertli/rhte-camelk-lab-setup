@@ -32,7 +32,7 @@ spec:
   devEnvironments:
     secondsOfRunBeforeIdling: -1
     defaultNamespace:
-      template: <username>-devspaces
+      template: <username>-dev
     secondsOfInactivityBeforeIdling: 1800
     storage:
       pvcStrategy: per-user

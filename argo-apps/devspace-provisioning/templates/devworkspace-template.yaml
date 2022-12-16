@@ -6,7 +6,7 @@ metadata:
   annotations:
     che.eclipse.org/components-update-policy: managed
     che.eclipse.org/plugin-registry-url: >-
-      # https://devspaces.apps.cluster.local:3000/plugin-registry/v3/plugins/eclipse/che-theia/latest/devfile.yaml
+      https://devspaces.apps.cluster.local:3000/plugin-registry/v3/plugins/eclipse/che-theia/latest/devfile.yaml
     argocd.argoproj.io/sync-wave: "6"    
   name: {{.name}}-workspace
   namespace: {{.name}}-dev

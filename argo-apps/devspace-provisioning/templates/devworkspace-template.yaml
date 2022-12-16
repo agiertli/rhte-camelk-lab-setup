@@ -124,6 +124,33 @@ spec:
       volume: {}
     - name: theia-local
       volume: {}
+    
+    - container:
+        cpuLimit: 500m
+        cpuRequest: 30m
+        env:
+          - name: PLUGIN_REMOTE_ENDPOINT_EXECUTABLE
+            value: /remote-endpoint/plugin-remote-endpoint
+          - name: REMOTE_ENDPOINT_VOLUME_NAME
+            value: remote-endpoint
+          - name: CHE_DASHBOARD_URL
+            value: https://devspaces.apps.cluster.local:3000
+          - name: CHE_PLUGIN_REGISTRY_URL
+            value: >-
+              https://devspaces.apps.cluster.local:3000/plugin-registry/v3
+          - name: CHE_PLUGIN_REGISTRY_INTERNAL_URL
+            value: http://plugin-registry.openshift-operators.svc:8080/v3
+        image: >-
+          registry.redhat.io/devspaces/theia-endpoint-rhel8@sha256:e1b120b445f5ac484ba90c04357a2b218e4c990bbdbedbcdb347565c29cb1ea8
+        memoryLimit: 128Mi
+        memoryRequest: 32Mi
+        sourceMapping: /projects
+        volumeMounts:
+          - name: plugins
+            path: /plugins
+          - name: remote-endpoint
+            path: /remote-endpoint
+      name: remote-runtime-injector
     - name: remote-endpoint
       volume:
         ephemeral: true

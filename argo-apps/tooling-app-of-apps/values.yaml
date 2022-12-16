@@ -3,7 +3,7 @@ spec:
     server: https://kubernetes.default.svc
   source:
     repoURL: https://github.com/agiertli/rhte-camelk
-    targetRevision: HEAD
+    targetRevision: maz
 argo:
   namespace: openshift-gitops
   destination: tooling
@@ -28,3 +28,5 @@ applications:
      path: tekton  
    - name: devspaces
      path: devspaces  
+   - name: devspace-provisioning
+     path: devspace-provisioning

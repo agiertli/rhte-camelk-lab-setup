@@ -1,0 +1,11 @@
+{{- range $key := .Values.users }}
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: workspace-preferences-configmap
+  namespace: {{.name}}-dev
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"    
+              
+{{- end }}

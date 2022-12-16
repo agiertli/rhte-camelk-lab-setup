@@ -43,8 +43,6 @@ spec:
       - container:
           cpuLimit: 1000m
           cpuRequest: 500m
-          command:
-            - /checode/entrypoint-volume.sh
           env:
             - name: CHE_DASHBOARD_URL
               value: >-

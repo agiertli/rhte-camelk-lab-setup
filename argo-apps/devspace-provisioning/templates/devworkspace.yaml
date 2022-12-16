@@ -7,14 +7,14 @@ metadata:
     che.eclipse.org/che-editor: eclipse/che-theia/latest
     che.eclipse.org/devfile-source: |
       scm:
-        repo: 'http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/${USERNAME}/camelk-user-repository.git'
+        repo: 'http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository.git'
         fileName: devfile.yaml
       factory:
-        params: 'url=http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/${USERNAME}/camelk-user-repository'
+        params: 'url=http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository'
     argocd.argoproj.io/sync-wave: "7"    
 
   name: demo-project
-  namespace: ${USERNAME}-dev
+  namespace: {{.name}}-dev
   finalizers:
     - storage.controller.devfile.io
 spec:
@@ -30,10 +30,10 @@ spec:
         che.eclipse.org/che-editor: eclipse/che-theia/latest
         che.eclipse.org/devfile-source: |
           scm:
-            repo: 'http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/${USERNAME}/camelk-user-repository.git'
+            repo: 'http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository.git'
             fileName: devfile.yaml
           factory:
-            params: 'url=http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/${USERNAME}/camelk-user-repository'
+            params: 'url=http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository'
     commands:
       - exec:
           component: tools
@@ -60,13 +60,13 @@ spec:
       - name: theia-workspace
         plugin:
           kubernetes:
-            name: ${USERNAME}-workspace
-            namespace: ${USERNAME}-dev
+            name: {{.name}}-workspace
+            namespace: {{.name}}-dev
     projects:
       - name: camelk-user-repository
         git:
           remotes:
-            origin: http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/${USERNAME}/camelk-user-repository  
+            origin: http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository  
           checkoutFrom:
             revision: main
     events:

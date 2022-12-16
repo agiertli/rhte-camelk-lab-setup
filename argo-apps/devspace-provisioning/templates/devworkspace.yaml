@@ -46,10 +46,10 @@ spec:
           env:
             - name: CHE_DASHBOARD_URL
               value: >-
-                https://devspaces.apps.svc.cluster.local:3000
+                https://devspaces.apps.cluster.local:3000
             - name: CHE_PLUGIN_REGISTRY_URL
               value: >-
-                https://devspaces.apps.svc.cluster.local:3000/plugin-registry/v3
+                https://devspaces.apps.cluster.local:3000/plugin-registry/v3
             - name: CHE_PLUGIN_REGISTRY_INTERNAL_URL
               value: http://plugin-registry.tooling.svc:8080/v3
           image: quay.io/devfile/universal-developer-image:ubi8-latest

@@ -6,7 +6,7 @@ metadata:
   annotations:
     che.eclipse.org/components-update-policy: managed
     che.eclipse.org/plugin-registry-url: >-
-      # https://devspaces.apps.svc.cluster.local:3000/plugin-registry/v3/plugins/eclipse/che-theia/latest/devfile.yaml
+      # https://devspaces.apps.cluster.local:3000/plugin-registry/v3/plugins/eclipse/che-theia/latest/devfile.yaml
     argocd.argoproj.io/sync-wave: "6"    
 
   name: {{.name}}-workspace
@@ -30,10 +30,10 @@ spec:
           - name: THEIA_HOST
             value: 127.0.0.1
           - name: CHE_DASHBOARD_URL
-            value: https://devspaces.apps.svc.cluster.local:3000
+            value: https://devspaces.apps.cluster.local:3000
           - name: CHE_PLUGIN_REGISTRY_URL
             value: >-
-              https://devspaces.apps.svc.cluster.local:3000/plugin-registry/v3
+              https://devspaces.apps.cluster.local:3000/plugin-registry/v3
           - name: CHE_PLUGIN_REGISTRY_INTERNAL_URL
             value: http://plugin-registry.openshift-operators.svc:8080/v3
         sourceMapping: /projects
@@ -134,10 +134,10 @@ spec:
         cpuRequest: 30m
         env:
           - name: CHE_DASHBOARD_URL
-            value: https://devspaces.apps.svc.cluster.local:3000
+            value: https://devspaces.apps.cluster.local:3000
           - name: CHE_PLUGIN_REGISTRY_URL
             value: >-
-              https://devspaces.apps.svc.cluster.local:3000/plugin-registry/v3
+              https://devspaces.apps.cluster.local:3000/plugin-registry/v3
           - name: CHE_PLUGIN_REGISTRY_INTERNAL_URL
             value: http://plugin-registry.openshift-operators.svc:8080/v3
         image: >-
@@ -155,10 +155,10 @@ spec:
           - name: REMOTE_ENDPOINT_VOLUME_NAME
             value: remote-endpoint
           - name: CHE_DASHBOARD_URL
-            value: https://devspaces.apps.svc.cluster.local:3000
+            value: https://devspaces.apps.cluster.local:3000
           - name: CHE_PLUGIN_REGISTRY_URL
             value: >-
-              https://devspaces.apps.svc.cluster.local:3000/plugin-registry/v3
+              https://devspaces.apps.cluster.local:3000/plugin-registry/v3
           - name: CHE_PLUGIN_REGISTRY_INTERNAL_URL
             value: http://plugin-registry.openshift-operators.svc:8080/v3
         image: >-

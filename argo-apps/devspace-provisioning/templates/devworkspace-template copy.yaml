@@ -4,7 +4,7 @@ apiVersion: workspace.devfile.io/v1alpha2
 kind: DevWorkspaceTemplate
 metadata:
   annotations:
-    argocd.argoproj.io/sync-wave: "6"    
+    argocd.argoproj.io/sync-wave: "6"
   name: {{.name}}-workspace
   namespace: {{.name}}-dev
 spec:
@@ -37,7 +37,7 @@ spec:
             path: /checode
         memoryLimit: 128Mi
         image: >-
-          registry.redhat.io/devspaces/code-rhel8
+          registry.redhat.io/devspaces/code-rhel8@sha256:d5efb27645f7ed12d449e8c35f01070b2fb6d247d79c94f374d8781371a17318
       name: che-code-injector
   events:
     preStart:

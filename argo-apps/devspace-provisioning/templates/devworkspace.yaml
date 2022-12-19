@@ -59,19 +59,6 @@ spec:
           volumeMounts:
             - name: checode
               path: /checode
-          endpoints:
-            - attributes:
-                contributed-by: che-code.eclipse.org
-                cookiesAuthEnabled: true
-                discoverable: false
-                type: main
-                urlRewriteSupported: true
-              exposure: public
-              name: che-code
-              path: '?tkn=eclipse-che'
-              protocol: https
-              secure: false
-              targetPort: 3100
         name: tools
       - name: {{.name}}-workspace
         plugin:

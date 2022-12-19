@@ -12,7 +12,6 @@ metadata:
       factory:
         params: 'url=http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository'
     argocd.argoproj.io/sync-wave: "7"    
-
   name: demo-project
   namespace: {{.name}}-dev
   finalizers:
@@ -30,10 +29,10 @@ spec:
         che.eclipse.org/che-editor: che-incubator/che-code/insiders
         che.eclipse.org/devfile-source: |
           scm:
-            repo: 'http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository.git'
+            repo: 'https://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository.git'
             fileName: devfile.yaml
           factory:
-            params: 'url=http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository'
+            params: 'url=https://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository'
     commands:
       - exec:
           component: tools
@@ -41,8 +40,7 @@ spec:
         id: install-jbang
     components:
       - container:
-          cpuLimit: 1000m
-          cpuRequest: 500m
+          cpuRequest: 530m
           env:
             - name: CHE_DASHBOARD_URL
               value: >-
@@ -52,10 +50,15 @@ spec:
                 https://devspaces.apps.cluster.local:3000/plugin-registry/v3
             - name: CHE_PLUGIN_REGISTRY_INTERNAL_URL
               value: http://plugin-registry.tooling.svc:8080/v3
+            - name: OPENVSX_REGISTRY_URL
+              value: https://open-vsx.org
           image: quay.io/devfile/universal-developer-image:ubi8-latest
           memoryLimit: 3Gi
-          memoryRequest: 1Gi
+          memoryRequest: 1.35Gi
           sourceMapping: /projects
+          volumeMounts:
+            - name: checode
+              path: /checode
           endpoints:
             - attributes:
                 contributed-by: che-code.eclipse.org

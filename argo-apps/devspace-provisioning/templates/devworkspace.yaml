@@ -4,7 +4,7 @@ apiVersion: workspace.devfile.io/v1alpha2
 kind: DevWorkspace
 metadata:
   annotations:
-    che.eclipse.org/che-editor: eclipse/che-theia/insiders
+    che.eclipse.org/che-editor: che-incubator/che-code/insiders
     che.eclipse.org/devfile-source: |
       scm:
         repo: 'http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository.git'
@@ -27,7 +27,7 @@ spec:
         namespace: tooling
       controller.devfile.io/storage-type: per-user
       dw.metadata.annotations:
-        che.eclipse.org/che-editor: eclipse/che-theia/insiders
+        che.eclipse.org/che-editor: che-incubator/che-code/insiders
         che.eclipse.org/devfile-source: |
           scm:
             repo: 'http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository.git'

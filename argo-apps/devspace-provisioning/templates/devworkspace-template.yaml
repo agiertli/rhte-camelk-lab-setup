@@ -4,7 +4,8 @@ apiVersion: workspace.devfile.io/v1alpha2
 kind: DevWorkspaceTemplate
 metadata:
   annotations:
-    argocd.argoproj.io/sync-wave: "6"    
+    argocd.argoproj.io/sync-wave: "6"
+    che.eclipse.org/plugin-registry-url: https://devspaces.apps.cluster.local:3000/plugin-registry/v3/plugins/eclipse/che-theia/latest/devfile.yaml
   name: {{.name}}-workspace
   namespace: {{.name}}-dev
 spec:

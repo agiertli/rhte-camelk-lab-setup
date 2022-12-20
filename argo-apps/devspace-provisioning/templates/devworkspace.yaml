@@ -120,9 +120,9 @@ spec:
         container:
           image: quay.io/artemiscloud/activemq-artemis-broker
           env: 
-            - name: user
+            - name: AMQ_USER
               value: admin
-            - name: password
+            - name: AMQ_PASSWORD
               value: password1!
           endpoints:
             - name: pf1

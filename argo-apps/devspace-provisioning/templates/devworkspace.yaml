@@ -119,6 +119,16 @@ spec:
       - name: artemis
         container:
           image: quay.io/artemiscloud/activemq-artemis-broker
+          env: 
+            - name: user
+              value: admin
+            - name: password
+              value: password1!
+          endpoints:
+            - name: pf1
+              targetPort: 8161
+            - name: pf2
+              targetPort: 5672
       - name: {{.name}}-workspace
         plugin:
           kubernetes:

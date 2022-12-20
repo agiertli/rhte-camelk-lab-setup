@@ -118,6 +118,8 @@ spec:
               targetPort: 13133
       - name: artemis
         container:
+          memoryRequest: 512M
+          memoryLimit: 1G
           image: quay.io/artemiscloud/activemq-artemis-broker
           env: 
             - name: AMQ_USER

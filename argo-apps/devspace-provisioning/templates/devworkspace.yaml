@@ -39,7 +39,8 @@ spec:
           component: tools
         id: install-jbang
     components:
-      - attributes:
+      - name: tools
+        attributes:
           che-code.eclipse.org/contribute-endpoint/code-redirect-1: 13131
           che-code.eclipse.org/contribute-memoryLimit: true
           che-code.eclipse.org/contribute-endpoint/code-redirect-2: 13132
@@ -115,7 +116,19 @@ spec:
               name: code-redirect-3
               protocol: http
               targetPort: 13133
-        name: tools
+      - name: artemis
+        container:
+          image: quay.io/artemiscloud/activemq-artemis-broker
+        env: 
+          - name: AMQ_USER
+            value: admin
+          - name: AMQ_PASSWORD
+            password: password1!
+        endpoints:
+          - name: pf1
+            targetPort: 8161
+          - name: pf2
+            targetPort: 5672
       - name: {{.name}}-workspace
         plugin:
           kubernetes:

@@ -12,7 +12,7 @@ metadata:
       factory:
         params: 'url=http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository'
     argocd.argoproj.io/sync-wave: "7"    
-  name: demo-project
+  name: {{.name}}-project
   namespace: {{.name}}-dev
   finalizers:
     - storage.controller.devfile.io
@@ -120,7 +120,7 @@ spec:
         plugin:
           kubernetes:
             name: {{.name}}-workspace
-            namespace: user3-dev
+            namespace: {{.name}}-dev
     events:
       postStart:
         - install-jbang

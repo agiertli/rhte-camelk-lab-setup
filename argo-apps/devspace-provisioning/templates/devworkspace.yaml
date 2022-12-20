@@ -130,13 +130,13 @@ spec:
             - name: pf1
               targetPort: 8161
               attributes:
-                discoverable: false
-              exposure: public
+                discoverable: 'true'
+              exposure: internal
             - name: pf2
               targetPort: 5672
               attributes:
-                discoverable: false
-              exposure: public
+                discoverable: 'true'
+              exposure: internal
       - name: {{.name}}-workspace
         plugin:
           kubernetes:

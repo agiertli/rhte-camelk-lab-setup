@@ -17,6 +17,7 @@ metadata:
   finalizers:
     - storage.controller.devfile.io
 spec:
+  started: True
   routingClass: che
   template:
     attributes:

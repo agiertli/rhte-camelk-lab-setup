@@ -126,8 +126,6 @@ spec:
               value: admin
             - name: AMQ_PASSWORD
               value: password1!
-            - name: AMQ_HOST
-              value: 127.0.0.1
           endpoints:
             - name: pf1
               targetPort: 8161

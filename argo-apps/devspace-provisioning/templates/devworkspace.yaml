@@ -126,16 +126,18 @@ spec:
               value: admin
             - name: AMQ_PASSWORD
               value: password1!
+            - name: AMQ_HOST
+              value: 127.0.0.1
           endpoints:
             - name: pf1
               targetPort: 8161
               attributes:
-                discoverable: 'true'
+                discoverable: true
               exposure: internal
             - name: pf2
               targetPort: 5672
               attributes:
-                discoverable: 'true'
+                discoverable: true
               exposure: internal
       - name: {{.name}}-workspace
         plugin:

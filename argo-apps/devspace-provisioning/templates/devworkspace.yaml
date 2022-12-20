@@ -119,11 +119,11 @@ spec:
       - name: artemis
         container:
           image: quay.io/artemiscloud/activemq-artemis-broker
-        env: 
-          - name: AMQ_USER
-            value: admin
-          - name: AMQ_PASSWORD
-            password: password1!
+          env: 
+            - name: AMQ_USER
+              value: admin
+            - name: AMQ_PASSWORD
+              password: password1!
         endpoints:
           - name: pf1
             targetPort: 8161

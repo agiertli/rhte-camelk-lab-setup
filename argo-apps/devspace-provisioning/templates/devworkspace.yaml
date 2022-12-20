@@ -123,12 +123,12 @@ spec:
             - name: AMQ_USER
               value: admin
             - name: AMQ_PASSWORD
-              password: password1!
-        endpoints:
-          - name: pf1
-            targetPort: 8161
-          - name: pf2
-            targetPort: 5672
+              value: password1!
+          endpoints:
+            - name: pf1
+              targetPort: 8161
+            - name: pf2
+              targetPort: 5672
       - name: {{.name}}-workspace
         plugin:
           kubernetes:

@@ -124,7 +124,6 @@ spec:
               targetPort: 8161
             - name: pf2
               targetPort: 5672
-          command: ['podman', 'run', '-e', 'AMQ_USER=admin', '-e', 'AMQ_PASSWORD=password1!', '-p', '8161:8161', '-p', '5672:5672', '--name', 'artemis', 'quay.io/artemiscloud/activemq-artemis-broker']
       - name: {{.name}}-workspace
         plugin:
           kubernetes:

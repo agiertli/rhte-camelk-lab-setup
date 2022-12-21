@@ -13,5 +13,5 @@ metadata:
     controller.devfile.io/mount-path: /etc/#
     argocd.argoproj.io/sync-wave: "2"    
 data:
-  gitconfig: "name = {{.name}}\n  email = {{.name}}@example.com \n  password = password" 
+  gitconfig: "[user]\n  name = {{.name}}\n  email = {{.name}}@example.com \n  password = password" 
 {{- end }}

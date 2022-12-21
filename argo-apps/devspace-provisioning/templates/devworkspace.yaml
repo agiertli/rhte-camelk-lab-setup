@@ -127,12 +127,12 @@ spec:
             - name: AMQ_PASSWORD
               value: password1!
           endpoints:
-            - name: pf1
+            - name: artemis-service
               targetPort: 8161
               attributes:
                 discoverable: true
               exposure: internal
-            - name: pf2
+            - name: artemis-service
               targetPort: 5672
               attributes:
                 discoverable: true

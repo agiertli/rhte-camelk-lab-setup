@@ -12,7 +12,6 @@ metadata:
     controller.devfile.io/mount-as: file
     controller.devfile.io/mount-path: /config/user/profile
     argocd.argoproj.io/sync-wave: "4"    
-
 stringData:
   email: {{.name}}@che
   name: {{.name}}

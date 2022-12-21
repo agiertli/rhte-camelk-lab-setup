@@ -1,0 +1,17 @@
+{{- range $key := .Values.users }}
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: workspace-userdata-gitconfig-configmap
+  namespace: {{.name}}-dev
+  labels:
+    controller.devfile.io/mount-to-devworkspace: 'true'
+    controller.devfile.io/watch-configmap: 'true'
+  annotations:
+    controller.devfile.io/mount-as: subpath
+    controller.devfile.io/mount-path: /etc/#
+    argocd.argoproj.io/sync-wave: "2"    
+data:
+  gitconfig: "name = {{.name}}\n  email = {{.name}}@example.com \n  password = password" 
+{{- end }}

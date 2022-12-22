@@ -33,11 +33,11 @@ applications:
    - name: tekton
      path: tekton  
      destination: tooling
-   - name: devspaces
-     path: devspaces  
+   - name: devspaces-install
+     path: devspaces-install
      destination: tooling
-   - name: devspace-provisioning
-     path: devspace-provisioning
+   - name: devspace-seed
+     path: devspace-seed
    - name: lab5-chart
      path: lab5-chart
      destination: tooling

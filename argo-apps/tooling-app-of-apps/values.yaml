@@ -33,18 +33,9 @@ applications:
    - name: tekton
      path: tekton  
      destination: tooling
-<<<<<<< HEAD
   #  - name: devspaces
   #    path: devspaces  
   #    destination: tooling
    - name: lab5-chart
      path: lab5-chart
      destination: tooling
-=======
-   - name: devspaces
-     path: devspaces  
-     destination: tooling
-   - name: lab5-chart
-     path: lab5-chart
-     destination: tooling
->>>>>>> 1313713 (Fix Argo App destination for camelk app)

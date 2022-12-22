@@ -9,8 +9,8 @@ metadata:
     controller.devfile.io/git-credential: 'true' 
     controller.devfile.io/watch-secret: 'true'
   annotations:
-    controller.devfile.io/mount-path: /etc/secret 
-    rgocd.argoproj.io/sync-wave: "2"    
+    controller.devfile.io/mount-path: ~/.gitconfig 
+    rgocd.argoproj.io/sync-wave: "1"    
 stringData:
-  credentials: http://{{.name}}:openshift@rhte-camelk-gitea.tooling.svc.cluster.local:3000
+  credentials: "[user]\n  name = {{.name}}\n  email = {{.name}}@example.com \n  password = password"
 {{- end }}

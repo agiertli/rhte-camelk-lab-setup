@@ -1,0 +1,155 @@
+{{- range $key := .Values.users }}
+---
+apiVersion: workspace.devfile.io/v1alpha2
+kind: DevWorkspace
+metadata:
+  annotations:
+    che.eclipse.org/che-editor: che-incubator/che-code/insiders
+    che.eclipse.org/devfile-source: |
+      scm:
+        repo: 'http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository.git'
+        fileName: devfile.yaml
+      factory:
+        params: 'url=http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository'
+    argocd.argoproj.io/sync-wave: "8"    
+  name: {{.name}}-project
+  namespace: {{.name}}-dev
+  finalizers:
+    - storage.controller.devfile.io
+spec:
+  started: True
+  routingClass: che
+  template:
+    attributes:
+      controller.devfile.io/devworkspace-config:
+        name: devworkspace-config
+        namespace: tooling
+      controller.devfile.io/storage-type: per-user
+      dw.metadata.annotations:
+        che.eclipse.org/che-editor: che-incubator/che-code/insiders
+        che.eclipse.org/devfile-source: |
+          scm:
+            repo: 'https://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository.git'
+            fileName: devfile.yaml
+          factory:
+            params: 'url=https://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository'
+    commands:
+      - exec:
+          commandLine: ' /home/user/.sdkman/candidates/jbang/current/bin/jbang trust add -o --fresh --quiet https://github.com/apache/camel/blob/HEAD/dsl/camel-jbang/camel-jbang-main/dist/CamelJBang.java && /home/user/.sdkman/candidates/jbang/current/bin/jbang app install camel@apache/camel'
+          component: tools
+        id: install-jbang
+    components:
+      - name: tools
+        attributes:
+          che-code.eclipse.org/contribute-endpoint/code-redirect-1: 13131
+          che-code.eclipse.org/contribute-memoryLimit: true
+          che-code.eclipse.org/contribute-endpoint/code-redirect-2: 13132
+          che-code.eclipse.org/contribute-cpuRequest: true
+          che-code.eclipse.org/contribute-endpoint/code-redirect-3: 13133
+          che-code.eclipse.org/original-memoryLimit: 3Gi
+          che-code.eclipse.org/contributed-container: tools
+          che-code.eclipse.org/original-cpuLimit: 1000m
+          che-code.eclipse.org/contribute-cpuLimit: true
+          che-code.eclipse.org/contribute-memoryRequest: true
+          che-code.eclipse.org/original-memoryRequest: 1Gi
+          che-code.eclipse.org/contribute-endpoint/che-code: 3100
+          che-code.eclipse.org/contribute-entry-point: true
+          che-code.eclipse.org/original-cpuRequest: 500m
+          che-code.eclipse.org/contribute-volume-mount/checode: /checode
+        container:
+          cpuRequest: 530m
+          command:
+            - /checode/entrypoint-volume.sh
+          env:
+            - name: CHE_DASHBOARD_URL
+              value: >-
+                https://devspaces.apps.cluster.local:3000
+            - name: CHE_PLUGIN_REGISTRY_URL
+              value: >-
+                https://devspaces.apps.cluster.local:3000/plugin-registry/v3
+            - name: CHE_PLUGIN_REGISTRY_INTERNAL_URL
+              value: http://plugin-registry.tooling.svc:8080/v3
+            - name: OPENVSX_REGISTRY_URL
+              value: https://open-vsx.org
+          memoryRequest: 1.34G
+          sourceMapping: /projects
+          cpuLimit: 1500m
+          volumeMounts:
+            - name: checode
+              path: /checode
+          memoryLimit: 4Gi
+          image: quay.io/devfile/universal-developer-image:ubi8-latest
+          endpoints:
+            - attributes:
+                contributed-by: che-code.eclipse.org
+                cookiesAuthEnabled: true
+                discoverable: false
+                type: main
+                urlRewriteSupported: true
+              exposure: public
+              name: che-code
+              path: '?tkn=eclipse-che'
+              protocol: https
+              secure: false
+              targetPort: 3100
+            - attributes:
+                contributed-by: che-code.eclipse.org
+                discoverable: false
+                urlRewriteSupported: true
+              exposure: public
+              name: code-redirect-1
+              protocol: http
+              targetPort: 13131
+            - attributes:
+                contributed-by: che-code.eclipse.org
+                discoverable: false
+                urlRewriteSupported: true
+              exposure: public
+              name: code-redirect-2
+              protocol: http
+              targetPort: 13132
+            - attributes:
+                contributed-by: che-code.eclipse.org
+                discoverable: false
+                urlRewriteSupported: true
+              exposure: public
+              name: code-redirect-3
+              protocol: http
+              targetPort: 13133
+      - name: artemis
+        container:
+          memoryRequest: 512M
+          memoryLimit: 1G
+          image: quay.io/artemiscloud/activemq-artemis-broker
+          env: 
+            - name: AMQ_USER
+              value: admin
+            - name: AMQ_PASSWORD
+              value: password1!
+          endpoints:
+            - name: artemis-console-service
+              targetPort: 8161
+              attributes:
+                discoverable: true
+              exposure: internal
+            - name: artemis-amqp-service
+              targetPort: 5672
+              attributes:
+                discoverable: true
+              exposure: internal
+      - name: {{.name}}-workspace
+        plugin:
+          kubernetes:
+            name: {{.name}}-workspace
+            namespace: {{.name}}-dev
+    events:
+      postStart:
+        - install-jbang
+    projects:
+      - git:
+          checkoutFrom:
+            revision: main
+          remotes:
+            origin: http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository
+        name: camelk-user-repository
+{{- end }}

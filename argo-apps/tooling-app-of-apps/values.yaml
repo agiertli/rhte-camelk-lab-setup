@@ -14,17 +14,28 @@ applications:
   #    path: camelk
    - name: nexus
      path: nexus
+     destination: tooling
    - name: amq7
      path: amq7
+     destination: tooling
    - name: sealed-secrets
      path: sealed-secrets/overlays/default
+     destination: tooling
    - name: namespaces
      path: namespaces  
+     destination: tooling
    - name: gitea
      path: gitea
+     destination: tooling
    - name: camelk-community
-     path: camelk-community  
+     path: camelk-community
+     destination: camelk-instructor
    - name: tekton
      path: tekton  
-#    - name: devspaces
-#      path: devspaces  
+     destination: tooling
+  #  - name: devspaces
+  #    path: devspaces  
+  #    destination: tooling
+   - name: lab5-chart
+     path: lab5-chart
+     destination: tooling

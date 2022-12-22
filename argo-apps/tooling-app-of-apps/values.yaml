@@ -24,9 +24,9 @@ applications:
    - name: namespaces
      path: namespaces  
      destination: tooling
-   - name: gitea
-     path: gitea
-     destination: tooling
+  #  - name: gitea
+  #    path: gitea
+  #    destination: tooling
    - name: camelk-community
      path: camelk-community
      destination: camelk-instructor

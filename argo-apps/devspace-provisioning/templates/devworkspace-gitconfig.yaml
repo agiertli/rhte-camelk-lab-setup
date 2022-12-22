@@ -10,8 +10,9 @@ metadata:
     app.kubernetes.io/part-of: devworkspace-operator
     controller.devfile.io/watch-configmap: 'true'
   annotations:
+    controller.devfile.io/mount-as: file
     controller.devfile.io/mount-path: /home/user/.gitconfig 
-    rgocd.argoproj.io/sync-wave: "-1"    
+    argocd.argoproj.io/sync-wave: "-1"    
 
 data:
   gitconfig: |

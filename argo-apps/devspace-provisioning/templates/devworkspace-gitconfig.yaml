@@ -1,16 +1,28 @@
 {{- range $key := .Values.users }}
 ---
+kind: ConfigMap
 apiVersion: v1
-kind: Secret
 metadata:
   name: {{.name}}-git-config
   namespace: {{.name}}-dev
   labels:
-    controller.devfile.io/git-credential: 'true' 
-    controller.devfile.io/watch-secret: 'true'
+    app.kubernetes.io/defaultName: git-config-secret
+    app.kubernetes.io/part-of: devworkspace-operator
+    controller.devfile.io/watch-configmap: 'true'
   annotations:
     controller.devfile.io/mount-path: ~/.gitconfig 
     rgocd.argoproj.io/sync-wave: "1"    
-stringData:
-  credentials: "[user]\n  name = {{.name}}\n  email = {{.name}}@example.com \n  password = password"
+
+data:
+  gitconfig: |
+    [filter "lfs"]
+        clean = git-lfs clean -- %f
+        smudge = git-lfs smudge -- %f
+        process = git-lfs filter-process
+        required = true
+    [user]
+        name = {{.name}}
+        email = {{.name}}.che
+    [credential]
+        helper = store --file /.git-credentials/credentials
 {{- end }}

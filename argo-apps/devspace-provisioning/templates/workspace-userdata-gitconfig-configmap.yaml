@@ -9,7 +9,7 @@ metadata:
     controller.devfile.io/mount-to-devworkspace: 'true'
     controller.devfile.io/watch-configmap: 'true'
   annotations:
-    controller.devfile.io/mount-as: subpath
+    controller.devfile.io/mount-as: file
     controller.devfile.io/mount-path: ~/.gitconfig
     argocd.argoproj.io/sync-wave: "2"    
 data:

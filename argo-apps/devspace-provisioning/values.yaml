@@ -9,3 +9,4 @@ users:
  - name: user8
  - name: user9
  - name: user10
+ - name: admin

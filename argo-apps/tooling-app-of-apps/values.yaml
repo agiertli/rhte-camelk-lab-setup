@@ -36,8 +36,8 @@ applications:
    - name: devspaces
      path: devspaces  
      destination: tooling
-  #  - name: devspace-provisioning
-  #    path: devspace-provisioning
+   - name: devspace-provisioning
+     path: devspace-provisioning
    - name: lab5-chart
      path: lab5-chart
      destination: tooling

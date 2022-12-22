@@ -36,6 +36,6 @@ applications:
   #  - name: devspaces
   #    path: devspaces  
   #    destination: tooling
-   - name: lab5-chart
-     path: lab5-chart
+   - name: lab5
+     path: lab5
      destination: tooling

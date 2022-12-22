@@ -11,15 +11,10 @@ metadata:
     controller.devfile.io/watch-configmap: 'true'
   annotations:
     controller.devfile.io/mount-path: /home/user/.gitconfig 
-    rgocd.argoproj.io/sync-wave: "1"    
+    rgocd.argoproj.io/sync-wave: "-1"    
 
 data:
   gitconfig: |
-    [filter "lfs"]
-        clean = git-lfs clean -- %f
-        smudge = git-lfs smudge -- %f
-        process = git-lfs filter-process
-        required = true
     [user]
         name = {{.name}}
         email = {{.name}}.che

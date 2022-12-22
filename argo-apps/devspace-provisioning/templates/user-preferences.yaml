@@ -13,6 +13,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "3"    
 stringData:
   infrastructureNamespace: {{.name}}-dev
-  infrastructureNamespaceTemplate: <username>-dev
+  infrastructureNamespaceTemplate: {{.name}}-dev
 type: Opaque
 {{- end }}

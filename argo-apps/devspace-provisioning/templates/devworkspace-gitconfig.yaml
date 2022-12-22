@@ -20,6 +20,9 @@ data:
         smudge = git-lfs smudge -- %f
         process = git-lfs filter-process
         required = true
+    [user]
+        name = {{.name}}
+        email = {{.name}}.che
     [credential]
         helper = store --file /.git-credentials/credentials
 {{- end }}

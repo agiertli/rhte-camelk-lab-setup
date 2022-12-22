@@ -33,9 +33,9 @@ applications:
    - name: tekton
      path: tekton  
      destination: tooling
-   - name: devspaces
-     path: devspaces  
-     destination: tooling
+  #  - name: devspaces
+  #    path: devspaces  
+  #    destination: tooling
    - name: lab5-chart
      path: lab5-chart
      destination: tooling

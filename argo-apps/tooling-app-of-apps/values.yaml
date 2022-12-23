@@ -39,6 +39,6 @@ applications:
    - name: devspaces-seed
      path: devspaces-seed
      destination: tooling
-   - name: lab5-chart
-     path: lab5-chart
+   - name: lab5
+     path: lab5
      destination: tooling

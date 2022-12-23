@@ -48,7 +48,8 @@ apiVersion: camel.apache.org/v1alpha1
 kind: KameletBinding
 metadata:
   annotations:
-    argocd.argoproj.io/sync-wave: "4"     
+    argocd.argoproj.io/sync-wave: "4"    
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
   name: >- 
    instructor-binding-{{ .name }}-prod
   namespace: camelk-instructor

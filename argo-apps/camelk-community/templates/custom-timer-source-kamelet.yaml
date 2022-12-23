@@ -3,6 +3,7 @@ apiVersion: camel.apache.org/v1alpha1
 kind: Kamelet
 metadata:
   annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "3"      
     camel.apache.org/catalog.version: 1.8.0.redhat-00052
     camel.apache.org/kamelet.group: Timer

@@ -13,6 +13,9 @@ spec:
     server: https://kubernetes.default.svc
   project: rhte-camelk-tooling   
   source:
+    helm:
+      valueFiles:
+       - labs/lab5/charts/dev/values.yaml
     path: labs/lab5/charts
     repoURL: http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository.git
     targetRevision: dev
@@ -35,6 +38,9 @@ spec:
     server: https://kubernetes.default.svc
   project: rhte-camelk-tooling   
   source:
+    helm:
+      valueFiles:
+       - labs/lab5/charts/prod/values.yaml  
     path: labs/lab5/charts
     repoURL: http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository.git
     targetRevision: HEAD

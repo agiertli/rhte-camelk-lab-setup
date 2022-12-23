@@ -35,9 +35,9 @@ spec:
             params: 'url=https://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository'
     commands:
       - exec:
-          commandLine: ' /home/user/.sdkman/candidates/jbang/current/bin/jbang trust add -o --fresh --quiet https://github.com/apache/camel/blob/HEAD/dsl/camel-jbang/camel-jbang-main/dist/CamelJBang.java && /home/user/.sdkman/candidates/jbang/current/bin/jbang app install camel@apache/camel'
+          commandLine: ' /home/user/.sdkman/candidates/jbang/current/bin/jbang trust add -o --fresh --quiet https://github.com/apache/camel/blob/HEAD/dsl/camel-jbang/camel-jbang-main/dist/CamelJBang.java && /home/user/.sdkman/candidates/jbang/current/bin/jbang app install camel@apache/camel && go install github.com/bitnami-labs/sealed-secrets/cmd/kubeseal@main &&  echo "export PATH=\$PATH:/home/user/go/bin" >> /home/user/.bashrc && source /home/user/.bashrc'
           component: tools
-        id: install-jbang
+        id: install-tools
     components:
       - name: tools
         attributes:
@@ -144,7 +144,7 @@ spec:
             namespace: {{.name}}-dev
     events:
       postStart:
-        - install-jbang
+        - install-tools
     projects:
       - git:
           checkoutFrom:

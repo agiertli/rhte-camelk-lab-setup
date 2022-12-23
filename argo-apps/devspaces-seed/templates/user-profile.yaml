@@ -1,0 +1,19 @@
+{{- range $key := .Values.users }}
+---
+kind: Secret
+apiVersion: v1
+metadata:
+  name: user-profile
+  namespace: {{.name}}-dev
+  labels:
+    controller.devfile.io/mount-to-devworkspace: 'true'
+    controller.devfile.io/watch-secret: 'true'
+  annotations:
+    controller.devfile.io/mount-as: file
+    controller.devfile.io/mount-path: /config/user/profile
+    argocd.argoproj.io/sync-wave: "4"    
+stringData:
+  email: {{.name}}@che
+  name: {{.name}}
+type: Opaque
+{{- end }}

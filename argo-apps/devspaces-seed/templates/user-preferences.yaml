@@ -1,0 +1,18 @@
+{{- range $key := .Values.users }}
+---
+kind: Secret
+apiVersion: v1
+metadata:
+  name: user-preferences
+  namespace: {{.name}}-dev
+  labels:
+    controller.devfile.io/mount-to-devworkspace: 'true'
+  annotations:
+    controller.devfile.io/mount-as: file
+    controller.devfile.io/mount-path: /config/user/preferences
+    argocd.argoproj.io/sync-wave: "3"    
+stringData:
+  infrastructureNamespace: {{.name}}-dev
+  infrastructureNamespaceTemplate: {{.name}}-dev
+type: Opaque
+{{- end }}

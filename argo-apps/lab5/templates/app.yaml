@@ -15,7 +15,7 @@ spec:
   source:
     helm:
       valueFiles:
-       - labs/lab5/charts/dev/values.yaml
+       - dev/values.yaml
     path: labs/lab5/charts
     repoURL: http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository.git
     targetRevision: dev
@@ -40,7 +40,7 @@ spec:
   source:
     helm:
       valueFiles:
-       - labs/lab5/charts/prod/values.yaml  
+       - prod/values.yaml  
     path: labs/lab5/charts
     repoURL: http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository.git
     targetRevision: HEAD

@@ -3,7 +3,7 @@ spec:
     server: https://kubernetes.default.svc
   source:
     repoURL: https://github.com/agiertli/rhte-camelk
-    targetRevision: HEAD
+    targetRevision: maz
 argo:
   namespace: openshift-gitops
   destination: tooling
@@ -36,8 +36,9 @@ applications:
    - name: devspaces-install
      path: devspaces-install
      destination: tooling
-   - name: devspace-seed
-     path: devspace-seed
+   - name: devspaces-seed
+     path: devspaces-seed
+     destination: tooling
    - name: lab5-chart
      path: lab5-chart
      destination: tooling

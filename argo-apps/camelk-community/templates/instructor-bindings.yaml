@@ -1,4 +1,4 @@
-{{- range $key := .Values.users }}
+{{- range $key := .Values.groups }}
 ---
 apiVersion: camel.apache.org/v1alpha1
 kind: KameletBinding
@@ -42,7 +42,7 @@ spec:
       remoteURI: amqp://rhte-artemis-no-ssl-0-svc.tooling.svc.cluster.local:5672
 {{- end }}
 
-{{- range $key := .Values.users }}
+{{- range $key := .Values.groups }}
 ---
 apiVersion: camel.apache.org/v1alpha1
 kind: KameletBinding

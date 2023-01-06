@@ -35,7 +35,7 @@ spec:
             params: 'url=https://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository'
     commands:
       - exec:
-          commandLine: ' kubectl config set-context --current --namespace={{.name}}-dev && krew install neat && /home/user/.sdkman/candidates/jbang/current/bin/jbang trust add -o --fresh --quiet https://github.com/apache/camel/blob/HEAD/dsl/camel-jbang/camel-jbang-main/dist/CamelJBang.java && /home/user/.sdkman/candidates/jbang/current/bin/jbang app install camel@apache/camel && go install github.com/bitnami-labs/sealed-secrets/cmd/kubeseal@main &&  echo "export PATH=\$PATH:/home/user/go/bin" >> /home/user/.bashrc && source /home/user/.bashrc'
+          commandLine: ' krew install neat && /home/user/.sdkman/candidates/jbang/current/bin/jbang trust add -o --fresh --quiet https://github.com/apache/camel/blob/HEAD/dsl/camel-jbang/camel-jbang-main/dist/CamelJBang.java && /home/user/.sdkman/candidates/jbang/current/bin/jbang app install camel@apache/camel && go install github.com/bitnami-labs/sealed-secrets/cmd/kubeseal@main &&  echo "export PATH=\$PATH:/home/user/go/bin" >> /home/user/.bashrc && source /home/user/.bashrc'
           component: tools
         id: install-tools
     components:

@@ -6,7 +6,7 @@ metadata:
 spec:
   channel: gitops-1.6
   installPlanApproval: Automatic
-  startingCSV: openshift-gitops-operator.v1.6.2
+  startingCSV: openshift-gitops-operator.v1.6.3
   source: redhat-operators
   sourceNamespace: openshift-marketplace
   name: openshift-gitops-operator

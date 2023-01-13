@@ -1,0 +1,37 @@
+{{- range $key := .Values.users }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  labels:
+    app: camel-k
+  name: camel-k-platform-admin
+  namespace: {{.name}}-dev
+rules:
+- apiGroups:
+  - camel.apache.org
+  resources:
+  - integrationplatforms/status
+  verbs:
+  - create
+  - delete
+  - patch
+  - update
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  labels:
+    app: camel-k
+  name: camel-k-platform-admin-rb
+  namespace: {{.name}}-dev
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: camel-k-platform-admin
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: {{.name}}
+
+{{ end }}  

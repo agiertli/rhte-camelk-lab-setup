@@ -10,11 +10,6 @@ argo:
   project: rhte-camelk-tooling       
 
 applications:
-  #  - name: camelk
-  #    path: camelk
-  #  - name: nexus
-  #    path: nexus
-  #    destination: tooling
    - name: amq7
      path: amq7
      destination: tooling

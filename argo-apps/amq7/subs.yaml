@@ -7,7 +7,7 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "-1"  
 spec:
-  channel: stable
+  channel: 7.10.x
   installPlanApproval: Automatic
   source: redhat-operators
   sourceNamespace: openshift-marketplace

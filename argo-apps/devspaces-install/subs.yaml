@@ -6,7 +6,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
-  channel: stable
+  channel: latest
   installPlanApproval: Automatic
   source: redhat-operators
   sourceNamespace: openshift-marketplace

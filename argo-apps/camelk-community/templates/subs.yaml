@@ -8,12 +8,11 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "2"  
 spec:
-  channel: stable-1.10
+  channel: stable
   installPlanApproval: Automatic
   name: camel-k
   source: community-operators
   sourceNamespace: openshift-marketplace
-  startingCSV: camel-k-operator.v1.10.3
 
 {{- range $key := .Values.users }}
 --- 
@@ -26,12 +25,11 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "2"  
 spec:
-  channel: stable-1.10
+  channel: stable
   installPlanApproval: Automatic
   name: camel-k
   source: community-operators
   sourceNamespace: openshift-marketplace
-  startingCSV: camel-k-operator.v1.10.3
 {{ end }}
 
 {{- range $key := .Values.users }}
@@ -45,10 +43,9 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "2"  
 spec:
-  channel: stable-1.10
+  channel: stable
   installPlanApproval: Automatic
   name: camel-k
   source: community-operators
   sourceNamespace: openshift-marketplace
-  startingCSV: camel-k-operator.v1.10.3
 {{ end }}

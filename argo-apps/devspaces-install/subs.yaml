@@ -8,7 +8,6 @@ metadata:
 spec:
   channel: stable
   installPlanApproval: Automatic
-  startingCSV: devspacesoperator.v3.3.0
   source: redhat-operators
   sourceNamespace: openshift-marketplace
   name: devspaces

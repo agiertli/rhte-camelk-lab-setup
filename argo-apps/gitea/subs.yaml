@@ -12,4 +12,3 @@ spec:
   name: gitea-operator
   source: redhat-gpte-gitea
   sourceNamespace: openshift-marketplace
-  startingCSV: gitea-operator.v1.3.0

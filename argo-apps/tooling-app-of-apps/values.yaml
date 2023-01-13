@@ -3,7 +3,7 @@ spec:
     server: https://kubernetes.default.svc
   source:
     repoURL: https://github.com/agiertli/rhte-camelk
-    targetRevision: HEAD
+    targetRevision: issue-13
 argo:
   namespace: openshift-gitops
   destination: tooling
@@ -12,9 +12,9 @@ argo:
 applications:
   #  - name: camelk
   #    path: camelk
-   - name: nexus
-     path: nexus
-     destination: tooling
+  #  - name: nexus
+  #    path: nexus
+  #    destination: tooling
    - name: amq7
      path: amq7
      destination: tooling

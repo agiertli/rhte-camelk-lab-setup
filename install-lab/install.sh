@@ -54,4 +54,7 @@ oc apply -f app-of-apps.yaml -n ${ARGOCD_NAMESPACE}
 # echo "Replacing sealed secret controller keys.."
 # ../argo-apps/sealed-secrets/scripts/replace-sealed-secrets-secret.sh 
 
+oc patch argocds.argoproj.io openshift-gitops --type='merge' --patch-file=patch.yaml -n openshift-gitops
+oc patch configmaps argocd-rbac-cm  -p '{"data":{"policy.default":" "}}' -n openshift-gitops
+
 echo "Installation complete!" 

@@ -35,5 +35,5 @@ spec:
       template: <username>-dev
     secondsOfInactivityBeforeIdling: -1
     storage:
-      pvcStrategy: per-user
+      pvcStrategy: per-workspace
   networking: {}

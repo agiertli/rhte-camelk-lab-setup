@@ -15,10 +15,10 @@ spec:
   giteaAdminEmail: opentlc-mgr@redhat.com
   giteaCreateUsers: true
   giteaGenerateUserFormat: "user%d"
-  giteaUserNumber: 10
+  giteaUserNumber: 45
   giteaUserPassword: openshift
   giteaMigrateRepositories: true
   giteaRepositoriesList:
-  - repo: https://github.com/agiertli/rhte-camelk-user-repository
+  - repo: https://github.com/agiertli/rhte-camelk-lab-instructions.git
     name: camelk-user-repository
     private: false

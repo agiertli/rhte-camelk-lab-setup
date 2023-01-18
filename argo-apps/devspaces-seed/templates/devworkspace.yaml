@@ -33,11 +33,6 @@ spec:
             fileName: devfile.yaml
           factory:
             params: 'url=https://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository'
-    commands:
-      - exec:
-          commandLine: 'oc project `cat /var/run/secrets/kubernetes.io/serviceaccount/namespace`'
-          component: tools
-        id: install-tools
     components:
       - name: tools
         attributes:
@@ -142,9 +137,6 @@ spec:
           kubernetes:
             name: {{.name}}-workspace
             namespace: {{.name}}-dev
-    events:
-      postStart:
-        - install-tools
     projects:
       - git:
           checkoutFrom:

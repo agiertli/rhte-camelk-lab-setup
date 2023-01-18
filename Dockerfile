@@ -15,5 +15,7 @@ USER 10001
 # install camel Jbang
 RUN /home/user/.sdkman/candidates/jbang/current/bin/jbang trust add -o --fresh --quiet https://github.com/apache/camel/blob/HEAD/dsl/camel-jbang/camel-jbang-main/dist/CamelJBang.java
 RUN /home/user/.sdkman/candidates/jbang/current/bin/jbang app install camel@apache/camel 
-RUN chmod a+x /home/user/.jbang/bin/camel
+USER 0
+RUN  chgrp -R 0 /home/user/.jbang && chmod -R g=u /etc/passwd /etc/group /home/user/.jbang
+USER 10001
 

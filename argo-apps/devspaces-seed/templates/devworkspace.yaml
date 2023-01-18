@@ -73,7 +73,7 @@ spec:
             - name: checode
               path: /checode
           memoryLimit: 4Gi
-          image: quay.io/marslan/rhte-camelk@sha256:8ae742e24b3b972e0541a7d2c432fb0c92ed7cdc41cf9c0b54524667c36b671d
+          image: quay.io/marslan/rhte-camelk:final
           endpoints:
             - attributes:
                 contributed-by: che-code.eclipse.org

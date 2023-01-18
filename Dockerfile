@@ -17,6 +17,6 @@ RUN /home/user/.sdkman/candidates/jbang/current/bin/jbang trust add -o --fresh -
 RUN /home/user/.sdkman/candidates/jbang/current/bin/jbang app install camel@apache/camel 
 USER 0
 RUN  chgrp -R 0 /home/user/.jbang && chmod -R g=u /etc/passwd /etc/group /home/user/.jbang
-RUN  chgrp -R 0 /home/user/.m2 && chmod -R g=u /etc/passwd /etc/group /home/user/.m2
+RUN  mkdir -p /home/user/.m2 && chgrp -R 0 /home/user/.m2 && chmod -R g=u /etc/passwd /etc/group /home/user/.m2
 USER 10001
 

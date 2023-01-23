@@ -4,6 +4,8 @@ kind: IntegrationPlatform
 metadata:
   labels:
     camel.apache.org/platform.generated: 'true'
+  annotations:
+    argocd.argoproj.io/sync-wave: "6"    
   name: camel-k
   namespace: camelk-instructor
 spec:
@@ -22,6 +24,8 @@ spec:
 apiVersion: camel.apache.org/v1
 kind: IntegrationPlatform
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "6"
   labels:
     camel.apache.org/platform.generated: 'true'
   name: camel-k
@@ -42,6 +46,8 @@ spec:
 apiVersion: camel.apache.org/v1
 kind: IntegrationPlatform
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "6"    
   labels:
     camel.apache.org/platform.generated: 'true'
   name: camel-k

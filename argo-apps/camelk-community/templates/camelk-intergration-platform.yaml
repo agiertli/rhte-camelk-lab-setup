@@ -1,0 +1,58 @@
+---
+apiVersion: camel.apache.org/v1
+kind: IntegrationPlatform
+metadata:
+  labels:
+    camel.apache.org/platform.generated: 'true'
+  name: camel-k
+  namespace: camelk-instructor
+spec:
+  build:
+    baseImage: 'docker.io/adoptopenjdk/openjdk11:latest'
+    maven:
+      settings: {}
+      settingsSecurity: {}
+    registry: {}
+  kamelet: {}
+  traits: {}
+---
+
+{{- range $key := .Values.users }}
+---
+apiVersion: camel.apache.org/v1
+kind: IntegrationPlatform
+metadata:
+  labels:
+    camel.apache.org/platform.generated: 'true'
+  name: camel-k
+  namespace: {{.name}}-dev
+spec:
+  build:
+    baseImage: 'docker.io/adoptopenjdk/openjdk11:latest'
+    maven:
+      settings: {}
+      settingsSecurity: {}
+    registry: {}
+  kamelet: {}
+  traits: {}
+{{ end }} 
+
+{{- range $key := .Values.users }}
+---
+apiVersion: camel.apache.org/v1
+kind: IntegrationPlatform
+metadata:
+  labels:
+    camel.apache.org/platform.generated: 'true'
+  name: camel-k
+  namespace:  {{.name}}-prod
+spec:
+  build:
+    baseImage: 'docker.io/adoptopenjdk/openjdk11:latest'
+    maven:
+      settings: {}
+      settingsSecurity: {}
+    registry: {}
+  kamelet: {}
+  traits: {}
+{{ end }}    

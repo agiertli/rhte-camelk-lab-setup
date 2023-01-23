@@ -30,10 +30,6 @@ spec:
   name: camel-k
   source: community-operators
   sourceNamespace: openshift-marketplace
-  packageOveride:
-    packageOverrides:
-      path: "status.build.baseImage"
-      value: 'docker.io/adoptopenjdk/openjdk11:latest'
 {{ end }}
 
 {{- range $key := .Values.users }}

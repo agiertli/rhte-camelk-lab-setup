@@ -6,6 +6,7 @@ metadata:
     camel.apache.org/platform.generated: 'true'
   annotations:
     argocd.argoproj.io/sync-wave: "6"    
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   name: camel-k
   namespace: camelk-instructor
 spec:
@@ -25,6 +26,7 @@ apiVersion: camel.apache.org/v1
 kind: IntegrationPlatform
 metadata:
   annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "6"
   labels:
     camel.apache.org/platform.generated: 'true'
@@ -47,7 +49,8 @@ apiVersion: camel.apache.org/v1
 kind: IntegrationPlatform
 metadata:
   annotations:
-    argocd.argoproj.io/sync-wave: "6"    
+    argocd.argoproj.io/sync-wave: "6" 
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true   
   labels:
     camel.apache.org/platform.generated: 'true'
   name: camel-k

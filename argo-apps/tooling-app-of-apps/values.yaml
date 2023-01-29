@@ -2,7 +2,7 @@ spec:
   destination:
     server: https://kubernetes.default.svc
   source:
-    repoURL: https://github.com/agiertli/rhte-camelk
+    repoURL: https://github.com/agiertli/rhte-camelk-lab-setup.git
     targetRevision: HEAD
 argo:
   namespace: openshift-gitops

@@ -10,7 +10,7 @@ spec:
   project: rhte-camelk-tooling
   source:
     path: argo-apps/tooling-app-of-apps
-    repoURL: https://github.com/agiertli/rhte-camelk.git
+    repoURL: https://github.com/agiertli/rhte-camelk-lab-setup.git
     targetRevision: HEAD
   syncPolicy:
     automated:

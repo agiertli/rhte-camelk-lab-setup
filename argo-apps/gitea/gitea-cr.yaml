@@ -15,7 +15,7 @@ spec:
   giteaAdminEmail: opentlc-mgr@redhat.com
   giteaCreateUsers: true
   giteaGenerateUserFormat: "user%d"
-  giteaUserNumber: 45
+  giteaUserNumber: 35
   giteaUserPassword: openshift
   giteaMigrateRepositories: true
   giteaRepositoriesList:

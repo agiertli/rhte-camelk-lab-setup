@@ -1,3 +1,4 @@
+{{ if .Values.instructor_bindings }}
 {{- range $key := .Values.users }}
 ---
 apiVersion: camel.apache.org/v1alpha1
@@ -85,3 +86,4 @@ spec:
         {{ .name }}-prod
       remoteURI: amqp://rhte-artemis-no-ssl-0-svc.tooling.svc.cluster.local:5672
 {{- end }}
+{{ end }}

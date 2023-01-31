@@ -1,3 +1,4 @@
+instructor_bindings: false
 users:
  - name: user1
  - name: user2

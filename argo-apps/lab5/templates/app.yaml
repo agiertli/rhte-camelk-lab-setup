@@ -17,7 +17,7 @@ spec:
       valueFiles:
        - dev/values.yaml
     path: labs/lab5/charts
-    repoURL: http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository.git
+    repoURL: http://rhte-camelk-gitea.gitea.svc.cluster.local:3000/{{.name}}/camelk-user-repository.git
     targetRevision: dev
   syncPolicy:
     syncOptions:
@@ -42,7 +42,7 @@ spec:
       valueFiles:
        - prod/values.yaml  
     path: labs/lab5/charts
-    repoURL: http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository.git
+    repoURL: http://rhte-camelk-gitea.gitea.svc.cluster.local:3000/{{.name}}/camelk-user-repository.git
     targetRevision: HEAD
   syncPolicy:
     syncOptions:
@@ -86,7 +86,7 @@ spec:
   project: rhte-camelk-tooling   
   source:
     path: labs/lab5/secrets/dev
-    repoURL: http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository.git
+    repoURL: http://rhte-camelk-gitea.gitea.svc.cluster.local:3000/{{.name}}/camelk-user-repository.git
     targetRevision: HEAD
   syncPolicy:
     syncOptions:

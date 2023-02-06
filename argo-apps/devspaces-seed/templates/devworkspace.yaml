@@ -7,10 +7,10 @@ metadata:
     che.eclipse.org/che-editor: che-incubator/che-code/insiders
     che.eclipse.org/devfile-source: |
       scm:
-        repo: 'http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository.git'
+        repo: 'http://rhte-camelk-gitea.gitea.svc.cluster.local:3000/{{.name}}/camelk-user-repository.git'
         fileName: devfile.yaml
       factory:
-        params: 'url=http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository'
+        params: 'url=http://rhte-camelk-gitea.gitea.svc.cluster.local:3000/{{.name}}/camelk-user-repository'
     argocd.argoproj.io/sync-wave: "7"    
   name: {{.name}}-project
   namespace: {{.name}}-dev
@@ -23,16 +23,16 @@ spec:
     attributes:
       controller.devfile.io/devworkspace-config:
         name: devworkspace-config
-        namespace: tooling
+        namespace: devspaces
       controller.devfile.io/storage-type: per-workspace
       dw.metadata.annotations:
         che.eclipse.org/che-editor: che-incubator/che-code/insiders
         che.eclipse.org/devfile-source: |
           scm:
-            repo: 'https://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository.git'
+            repo: 'https://rhte-camelk-gitea.gitea.svc.cluster.local:3000/{{.name}}/camelk-user-repository.git'
             fileName: devfile.yaml
           factory:
-            params: 'url=https://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository'
+            params: 'url=https://rhte-camelk-gitea.gitea.svc.cluster.local:3000/{{.name}}/camelk-user-repository'
     components:
       - name: tools
         attributes:
@@ -63,7 +63,7 @@ spec:
               value: >-
                 https://devspaces.apps.cluster.local:3000/plugin-registry/v3
             - name: CHE_PLUGIN_REGISTRY_INTERNAL_URL
-              value: http://plugin-registry.tooling.svc:8080/v3
+              value: http://plugin-registry.devspaces.svc:8080/v3
             - name: OPENVSX_REGISTRY_URL
               value: https://open-vsx.org
           memoryRequest: 1.34G
@@ -142,6 +142,6 @@ spec:
           checkoutFrom:
             revision: main
           remotes:
-            origin: http://rhte-camelk-gitea.tooling.svc.cluster.local:3000/{{.name}}/camelk-user-repository
+            origin: http://rhte-camelk-gitea.gitea.svc.cluster.local:3000/{{.name}}/camelk-user-repository
         name: camelk-user-repository
 {{- end }}

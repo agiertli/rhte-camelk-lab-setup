@@ -4,7 +4,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
   name: kubernetes-imagepuller-operator
-  namespace: tooling
+  namespace: devspaces
 spec:
   channel: stable
   installPlanApproval: Automatic

@@ -2,7 +2,7 @@ apiVersion: org.eclipse.che/v2
 kind: CheCluster
 metadata:
   name: che-cluster
-  namespace: tooling
+  namespace: devspaces
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "2"

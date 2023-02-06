@@ -12,28 +12,28 @@ argo:
 applications:
    - name: amq7
      path: amq7
-     destination: tooling
+     destination: amq
    - name: sealed-secrets
      path: sealed-secrets/overlays/default
-     destination: tooling
+     destination: sealed-secrets
    - name: namespaces
      path: namespaces  
      destination: tooling
    - name: gitea
      path: gitea
-     destination: tooling
+     destination: gitea
    - name: camelk-community
      path: camelk-community
      destination: camelk-instructor
    - name: tekton
      path: tekton  
-     destination: tooling
+     destination: tekton
    - name: devspaces-install
      path: devspaces-install
-     destination: tooling
+     destination: devspaces
    - name: devspaces-seed
      path: devspaces-seed
-     destination: tooling
+     destination: devspaces
    - name: lab5
      path: lab5
      destination: tooling

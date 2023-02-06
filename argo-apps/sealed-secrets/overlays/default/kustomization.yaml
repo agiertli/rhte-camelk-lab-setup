@@ -1,7 +1,7 @@
 kind: Kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 
-namespace: tooling
+namespace: sealed-secrets
 
 # Include the base Sealed Secrets manifests.
 bases:
